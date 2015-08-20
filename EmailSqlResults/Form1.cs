@@ -68,9 +68,9 @@ namespace EmailSqlResults
             lblCurrentTime.Text = DateTime.Now.ToString("h:mm:ss tt");
             if (lblCurrentTime.Text == dtpScheduledTime.Text)
             {
-                var x = new ExecuteSQL(this);
+                var x = new ExecuteSQL(this, txtFilePath.Text);
             }
-        }
+        } 
     }
 
 

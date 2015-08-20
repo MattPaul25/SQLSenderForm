@@ -7,3 +7,5 @@ c:\users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSq
 c:\users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.csproj.GenerateResource.Cache
 c:\users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.exe
 c:\users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.pdb
+C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.csproj.ResolveComReference.cache

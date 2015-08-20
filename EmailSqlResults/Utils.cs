@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace EmailSqlResults
 {
-    static class Utils
-    {
-
+    
+    public static class CollectionUtils
+    {  
     }
 }
