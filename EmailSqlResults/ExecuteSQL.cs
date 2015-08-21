@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data;
 
 namespace EmailSqlResults
 {
-    class ExecuteSQL
+    class FindSQL
     {
         private Form1 form;
-        public string filepath { get; set; }
+        public List<string> SqlStatements { get; set; }
+        public List<string> QryNames { get; set; }
 
-        public ExecuteSQL(Form1 Form, string FilePath)
+        public FindSQL(Form1 Form)
         {
-            filepath = FilePath;
+            SqlStatements = new List<string>();
+            QryNames = new List<string>();
             form = Form;
             findSqlControl();
         }
 
         private void findSqlControl()
         {
+            //finds the added cntrls with a name of leader string sqlbox
+            //these controls refer to inputs that contain 
             foreach (Control cntrl1 in form.Controls)
             {
                 string cntrl1Name = "sqlbox";
@@ -28,13 +33,14 @@ namespace EmailSqlResults
                     bool isControlType = cntrl1.Name.Substring(0, cntrl1Name.Length) == cntrl1Name;
                     if (isControlType)
                     {
-                        findQueryNameControl(cntrl1);
+                        SqlStatements.Add(cntrl1.Text);
+                        findQryNameControl(cntrl1);
                     }
                 }
             }
         }
 
-        private void findQueryNameControl(Control cntrl1)
+        private void findQryNameControl(Control cntrl1)
         {
             string cntrlNum = cntrl1.Name.Substring(cntrl1.Name.Length -1, 1);
             foreach (Control cntrl2 in form.Controls)
@@ -47,7 +53,7 @@ namespace EmailSqlResults
                     bool isCorrectControl = isControlType && isControlNum;
                     if (isCorrectControl)
                     {
-                        var dmpQryResults = new GenerateQueryResults(cntrl1.Text, cntrl2.Text, filepath);
+                        QryNames.Add(cntrl2.Text + ".xlsx");                      
                     }
                 }
             }

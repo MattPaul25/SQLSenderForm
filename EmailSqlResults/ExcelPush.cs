@@ -14,28 +14,29 @@ namespace EmailSqlResults
 {
     class ExcelPush
     {
-        public string location { get; set; }
-        public System.Data.DataTable dt { get; set; }
+        private string location;
+        private System.Data.DataTable dt;
+        public bool isSuccessful { get; set; }
 
         public ExcelPush(System.Data.DataTable Dt, string Location)
         {
-            this.dt = Dt;
-            this.location = Location;
+           // this.dt = Dt;
+           // this.location = Location;
 
             if (File.Exists(location))        
                 File.Delete(location);
             
-            WriteToExcel();
+            WriteToExcel(Dt, Location);
 
         }
 
-        private void WriteToExcel()
+        private void WriteToExcel(System.Data.DataTable dt, string location)
         {
             //instantiate excel objects (application, workbook, worksheets)
-            excel.Application oXL = new excel.Application();
-            oXL.Visible = false;
-            excel._Workbook oWB = (excel.Workbook)(oXL.Workbooks.Add(""));
-            excel._Worksheet oSheet = (excel.Worksheet)oWB.ActiveSheet;
+            excel.Application XlObj = new excel.Application();
+            XlObj.Visible = false;
+            excel._Workbook WbObj = (excel.Workbook)(XlObj.Workbooks.Add(""));
+            excel._Worksheet WsObj = (excel.Worksheet)WbObj.ActiveSheet;
           
             //run through datatable and assign cells to values of datatable
             try
@@ -44,7 +45,7 @@ namespace EmailSqlResults
                 foreach (DataColumn column in dt.Columns)
                 {
                     //adding columns
-                    oSheet.Cells[row, col] = column.ColumnName;
+                    WsObj.Cells[row, col] = column.ColumnName;
                     col++;
                 }
                 //reset column and row variables
@@ -52,30 +53,32 @@ namespace EmailSqlResults
                 row++;
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-
+                    //adding data
                     foreach (var cell in dt.Rows[i].ItemArray)
                     {
-                        oSheet.Cells[row, col] = cell;
+                        WsObj.Cells[row, col] = cell;
                         col++;
                     }
                     col = 1;
                     row++;
                 }
-                oWB.SaveAs(location);
+                WbObj.SaveAs(location);
+                isSuccessful = true;
             }
             catch (COMException x)
             {
-                MessageBox.Show(x.Message);
+                isSuccessful = false;
                 ErrorHandler.Handle(x);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                isSuccessful = false;
                 ErrorHandler.Handle(ex);
             }
             finally
             {
-                oWB.Close();
+                WbObj.Close();
+                
             }
         }
     }

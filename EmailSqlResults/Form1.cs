@@ -23,9 +23,11 @@ namespace EmailSqlResults
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            dtpScheduledTime.Text = DateTime.Now.AddHours(1).ToString("h:mm:ss tt");
+            lblCurrentTime.Text = DateTime.Now.ToString("h:mm:ss tt");
             tmrNow.Tick += new EventHandler(tmrNow_Tick);
             tmrNow.Enabled = true;
-            lblCurrentTime.Text = DateTime.Now.ToString("h:mm:ss tt");
+           
         }
 
         private void btnAddQuery_Click(object sender, EventArgs e)
@@ -66,12 +68,33 @@ namespace EmailSqlResults
         private void tmrNow_Tick(object sender, EventArgs e)
         {
             lblCurrentTime.Text = DateTime.Now.ToString("h:mm:ss tt");
+            
             if (lblCurrentTime.Text == dtpScheduledTime.Text)
             {
-                var x = new ExecuteSQL(this, txtFilePath.Text);
+                var findSql = new FindSQL(this);
+                var qryNames = findSql.QryNames;
+                var sqlStrings = findSql.SqlStatements;
+                for (int i = 0; i < qryNames.Count; i++)
+                {
+                    string qryName = qryNames[i];
+                    string sqlString = sqlStrings[i];
+                    var sqlData = new RunQuery(sqlString, qryName).sqlData;
+                    var excelPush = new ExcelPush(sqlData, txtFilePath.Text + qryName);
+                }
+                var EmlObj = new EmailObject() { To = txtTo.Text, Body = txtBody.Text, CC = txtCC.Text, Subject = txtSubject.Text };
+                var GenerateEmail = new GenerateEmail(EmlObj, qryNames, txtFilePath.Text);
             }
         } 
     }
+
+    class EmailObject
+    {
+        public string To { get; set; }
+        public string CC { get; set; }
+        public string Subject { get; set; }
+        public string Body { get; set; }
+    }
+    
 
 
 }

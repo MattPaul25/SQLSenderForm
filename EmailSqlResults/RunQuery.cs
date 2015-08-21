@@ -9,18 +9,17 @@ using System.Windows.Forms;
 
 namespace EmailSqlResults
 {
-    class GenerateQueryResults
+    class RunQuery
     {
         public DataTable sqlData { get; set; }
         private string sql;
         private string qryName;
 
-        public GenerateQueryResults(string Sql, string QryName, string directory)
+        public RunQuery(string Sql, string QryName)
         {
            sql = Sql;
            qryName = QryName;
            connect();
-           var expush = new ExcelPush(sqlData, directory + qryName + ".xlsx");
         }
 
         private void connect()
