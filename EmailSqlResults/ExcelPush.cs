@@ -14,7 +14,6 @@ namespace EmailSqlResults
 {
     class ExcelPush
     {
-        private string location;
         private System.Data.DataTable dt;
         public bool isSuccessful { get; set; }
 
@@ -23,8 +22,8 @@ namespace EmailSqlResults
            // this.dt = Dt;
            // this.location = Location;
 
-            if (File.Exists(location))        
-                File.Delete(location);
+            if (File.Exists(Location))
+                File.Delete(Location);
             
             WriteToExcel(Dt, Location);
 

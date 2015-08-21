@@ -79,7 +79,11 @@ namespace EmailSqlResults
                     string qryName = qryNames[i];
                     string sqlString = sqlStrings[i];
                     var sqlData = new RunQuery(sqlString, qryName).sqlData;
-                    var excelPush = new ExcelPush(sqlData, txtFilePath.Text + qryName);
+                    if (sqlData.Rows.Count > 0)
+                    {
+                        var excelPush = new ExcelPush(sqlData, txtFilePath.Text + qryName);
+                    }
+                  
                 }
                 var EmlObj = new EmailObject() { To = txtTo.Text, Body = txtBody.Text, CC = txtCC.Text, Subject = txtSubject.Text };
                 var GenerateEmail = new GenerateEmail(EmlObj, qryNames, txtFilePath.Text);
