@@ -10,7 +10,6 @@ namespace EmailSqlResults
     class GenerateEmail
     {
         private List<string> qryNames;
-        private string path;
         private string AttachmentLocation;
         public bool isSuccessful { get; set; }
 
@@ -21,22 +20,28 @@ namespace EmailSqlResults
             AttachmentLocation = DownloadDestination;
             sendEmail(EmlObj);
         }
-        private void sendEmail(EmailObject eml)
+        public GenerateEmail(EmailObject EmlObj)
         {
-
+            sendEmail(EmlObj, true);
+        }
+        private void sendEmail(EmailObject eml, bool errEmail = false)
+        {
             string myDate = DateTime.Today.ToString("MMMM dd, yyyy");
             try
             {
                 Outlook.Application app = new Outlook.Application();
                 Outlook.MailItem mail = app.CreateItem(Outlook.OlItemType.olMailItem);
                 int fileCount = 0;
-                foreach (var qryName in qryNames)
-                {
 
-                    mail.Attachments.Add(AttachmentLocation + qryName);
-                    fileCount++;
+                if (qryNames != null)
+                {
+                    foreach (var qryName in qryNames)
+                    {
+                        mail.Attachments.Add(AttachmentLocation + qryName);
+                        fileCount++;
+                    }
                 }
-                if (fileCount > 0)
+                if (errEmail || fileCount > 0)
                 {
                     mail.Importance = Outlook.OlImportance.olImportanceHigh;
                     mail.Subject = myDate + " " + eml.Subject;
@@ -47,6 +52,7 @@ namespace EmailSqlResults
                     isSuccessful = true;
                     mail.Close(Outlook.OlInspectorClose.olDiscard);
                 }
+
             }
             catch (Exception x)
             {

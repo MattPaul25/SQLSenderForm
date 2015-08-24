@@ -38,7 +38,7 @@ namespace EmailSqlResults
             }
             catch (Exception x)
             {
-                 MessageBox.Show(x.Message);
+                ErrorHandler.Handle(x);
             }
 
         }

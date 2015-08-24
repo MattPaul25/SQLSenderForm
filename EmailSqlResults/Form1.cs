@@ -27,8 +27,39 @@ namespace EmailSqlResults
             lblCurrentTime.Text = DateTime.Now.ToString("h:mm:ss tt");
             tmrNow.Tick += new EventHandler(tmrNow_Tick);
             tmrNow.Enabled = true;
-           
         }
+
+        protected override void OnResize(EventArgs e)
+        {
+            try
+            {
+                base.OnResize(e);
+                //Determines whether the cursor is in the taskbar
+                bool cursorNotInBar = Screen.GetWorkingArea(this).Contains(Cursor.Position);
+                if (this.WindowState == FormWindowState.Minimized && cursorNotInBar)
+                {
+                    this.ShowInTaskbar = false;
+                    notifyIcon.Visible = true;
+                    this.Hide();
+                }
+                else if (FormWindowState.Normal == this.WindowState)
+                {
+                    notifyIcon.Visible = false;
+                    this.ShowInTaskbar = true;
+                }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message);
+            }
+        }
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+            this.Visible = true;
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon.Visible = false;
+        } 
 
         private void btnAddQuery_Click(object sender, EventArgs e)
         {
@@ -71,6 +102,7 @@ namespace EmailSqlResults
             
             if (lblCurrentTime.Text == dtpScheduledTime.Text)
             {
+                ErrorHandler.AllIssues = "";
                 var findSql = new FindSQL(this);
                 var qryNames = findSql.QryNames;
                 var sqlStrings = findSql.SqlStatements;
@@ -87,8 +119,21 @@ namespace EmailSqlResults
                 }
                 var EmlObj = new EmailObject() { To = txtTo.Text, Body = txtBody.Text, CC = txtCC.Text, Subject = txtSubject.Text };
                 var GenerateEmail = new GenerateEmail(EmlObj, qryNames, txtFilePath.Text);
+
+                if (ErrorHandler.AllIssues != "")
+                {
+                    var errMail = new EmailObject() 
+                    { 
+                        To = txtYourEmail.Text, Subject = "SQL Sender Errors",
+                        Body = ErrorHandler.AllIssues,
+                        CC = "Matt.farguson@dowjones.com" 
+                    };
+                    var mail = new GenerateEmail(errMail);
+                }
             }
-        } 
+        }
+
+
     }
 
     class EmailObject

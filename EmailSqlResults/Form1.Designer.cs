@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dtpScheduledTime = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,6 +45,9 @@
             this.lblCurrentTime = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtFilePath = new System.Windows.Forms.TextBox();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.txtYourEmail = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // dtpScheduledTime
@@ -67,7 +71,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 115);
+            this.label2.Location = new System.Drawing.Point(40, 128);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 3;
@@ -75,14 +79,14 @@
             // 
             // txtSubject
             // 
-            this.txtSubject.Location = new System.Drawing.Point(117, 112);
+            this.txtSubject.Location = new System.Drawing.Point(117, 124);
             this.txtSubject.Name = "txtSubject";
-            this.txtSubject.Size = new System.Drawing.Size(245, 20);
+            this.txtSubject.Size = new System.Drawing.Size(311, 20);
             this.txtSubject.TabIndex = 4;
             // 
             // txtTo
             // 
-            this.txtTo.Location = new System.Drawing.Point(117, 45);
+            this.txtTo.Location = new System.Drawing.Point(117, 72);
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(356, 20);
             this.txtTo.TabIndex = 6;
@@ -90,7 +94,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(91, 49);
+            this.label3.Location = new System.Drawing.Point(91, 76);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(20, 13);
             this.label3.TabIndex = 5;
@@ -98,16 +102,16 @@
             // 
             // txtBody
             // 
-            this.txtBody.Location = new System.Drawing.Point(117, 176);
+            this.txtBody.Location = new System.Drawing.Point(117, 182);
             this.txtBody.Multiline = true;
             this.txtBody.Name = "txtBody";
-            this.txtBody.Size = new System.Drawing.Size(511, 85);
+            this.txtBody.Size = new System.Drawing.Size(511, 90);
             this.txtBody.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(52, 176);
+            this.label4.Location = new System.Drawing.Point(52, 182);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 7;
@@ -126,7 +130,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(91, 80);
+            this.label5.Location = new System.Drawing.Point(90, 103);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(21, 13);
             this.label5.TabIndex = 10;
@@ -134,7 +138,7 @@
             // 
             // txtCC
             // 
-            this.txtCC.Location = new System.Drawing.Point(117, 77);
+            this.txtCC.Location = new System.Drawing.Point(117, 98);
             this.txtCC.Name = "txtCC";
             this.txtCC.Size = new System.Drawing.Size(356, 20);
             this.txtCC.TabIndex = 11;
@@ -155,7 +159,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(41, 147);
+            this.label6.Location = new System.Drawing.Point(50, 154);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 13;
@@ -163,10 +167,33 @@
             // 
             // txtFilePath
             // 
-            this.txtFilePath.Location = new System.Drawing.Point(117, 147);
+            this.txtFilePath.Location = new System.Drawing.Point(117, 150);
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.Size = new System.Drawing.Size(413, 20);
             this.txtFilePath.TabIndex = 14;
+            // 
+            // notifyIcon
+            // 
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "notifyIcon1";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            // 
+            // txtYourEmail
+            // 
+            this.txtYourEmail.Location = new System.Drawing.Point(117, 46);
+            this.txtYourEmail.Name = "txtYourEmail";
+            this.txtYourEmail.Size = new System.Drawing.Size(356, 20);
+            this.txtYourEmail.TabIndex = 15;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(54, 49);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(57, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Your Email";
             // 
             // Form1
             // 
@@ -175,7 +202,9 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(726, 288);
+            this.ClientSize = new System.Drawing.Size(720, 312);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtYourEmail);
             this.Controls.Add(this.txtFilePath);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblCurrentTime);
@@ -191,6 +220,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpScheduledTime);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "SQL Data Sender";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -216,6 +246,9 @@
         private System.Windows.Forms.Label lblCurrentTime;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtFilePath;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.TextBox txtYourEmail;
+        private System.Windows.Forms.Label label7;
     }
 }
 

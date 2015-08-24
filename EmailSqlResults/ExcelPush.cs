@@ -14,19 +14,13 @@ namespace EmailSqlResults
 {
     class ExcelPush
     {
-        private System.Data.DataTable dt;
         public bool isSuccessful { get; set; }
 
         public ExcelPush(System.Data.DataTable Dt, string Location)
         {
-           // this.dt = Dt;
-           // this.location = Location;
-
             if (File.Exists(Location))
                 File.Delete(Location);
-            
             WriteToExcel(Dt, Location);
-
         }
 
         private void WriteToExcel(System.Data.DataTable dt, string location)
