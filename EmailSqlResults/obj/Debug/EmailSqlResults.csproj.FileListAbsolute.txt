@@ -9,3 +9,7 @@ c:\users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSq
 c:\users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.pdb
 C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\bin\Debug\DocumentFormat.OpenXml.dll
 C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.csproj.ResolveComReference.cache
+C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\bin\Debug\EmailSqlResults.exe.manifest
+C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\bin\Debug\EmailSqlResults.application
+C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.exe.manifest
+C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.application

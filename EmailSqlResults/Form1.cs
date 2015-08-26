@@ -102,6 +102,7 @@ namespace EmailSqlResults
             
             if (lblCurrentTime.Text == dtpScheduledTime.Text)
             {
+                //if time = time to send out, then sendd the email
                 ErrorHandler.AllIssues = "";
                 var findSql = new FindSQL(this);
                 var qryNames = findSql.QryNames;
@@ -122,11 +123,13 @@ namespace EmailSqlResults
 
                 if (ErrorHandler.AllIssues != "")
                 {
+                    //send an error email
                     var errMail = new EmailObject() 
                     { 
-                        To = txtYourEmail.Text, Subject = "SQL Sender Errors",
+                        To = txtYourEmail.Text, 
+                        Subject = "SQL Sender Errors",
                         Body = ErrorHandler.AllIssues,
-                        CC = "Matt.farguson@dowjones.com" 
+                        CC = txtCC.Text 
                     };
                     var mail = new GenerateEmail(errMail);
                 }
