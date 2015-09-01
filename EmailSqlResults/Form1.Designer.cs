@@ -48,6 +48,17 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.txtYourEmail = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.gbWeekDays = new System.Windows.Forms.GroupBox();
+            this.ckbSunday = new System.Windows.Forms.CheckBox();
+            this.ckbSaturday = new System.Windows.Forms.CheckBox();
+            this.ckbFriday = new System.Windows.Forms.CheckBox();
+            this.ckbThursday = new System.Windows.Forms.CheckBox();
+            this.ckbWednesday = new System.Windows.Forms.CheckBox();
+            this.ckbTuesday = new System.Windows.Forms.CheckBox();
+            this.ckbMonday = new System.Windows.Forms.CheckBox();
+            this.cmbMonth = new System.Windows.Forms.ComboBox();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.gbWeekDays.SuspendLayout();
             this.SuspendLayout();
             // 
             // dtpScheduledTime
@@ -105,7 +116,7 @@
             this.txtBody.Location = new System.Drawing.Point(117, 182);
             this.txtBody.Multiline = true;
             this.txtBody.Name = "txtBody";
-            this.txtBody.Size = new System.Drawing.Size(511, 90);
+            this.txtBody.Size = new System.Drawing.Size(571, 90);
             this.txtBody.TabIndex = 8;
             // 
             // label4
@@ -150,7 +161,7 @@
             // lblCurrentTime
             // 
             this.lblCurrentTime.AutoSize = true;
-            this.lblCurrentTime.Location = new System.Drawing.Point(592, 19);
+            this.lblCurrentTime.Location = new System.Drawing.Point(662, 22);
             this.lblCurrentTime.Name = "lblCurrentTime";
             this.lblCurrentTime.Size = new System.Drawing.Size(26, 13);
             this.lblCurrentTime.TabIndex = 12;
@@ -195,6 +206,143 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "Your Email";
             // 
+            // gbWeekDays
+            // 
+            this.gbWeekDays.Controls.Add(this.ckbSunday);
+            this.gbWeekDays.Controls.Add(this.ckbSaturday);
+            this.gbWeekDays.Controls.Add(this.ckbFriday);
+            this.gbWeekDays.Controls.Add(this.ckbThursday);
+            this.gbWeekDays.Controls.Add(this.ckbWednesday);
+            this.gbWeekDays.Controls.Add(this.ckbTuesday);
+            this.gbWeekDays.Controls.Add(this.ckbMonday);
+            this.gbWeekDays.Location = new System.Drawing.Point(221, 2);
+            this.gbWeekDays.Name = "gbWeekDays";
+            this.gbWeekDays.Size = new System.Drawing.Size(344, 40);
+            this.gbWeekDays.TabIndex = 17;
+            this.gbWeekDays.TabStop = false;
+            this.gbWeekDays.Text = "Week Day";
+            // 
+            // ckbSunday
+            // 
+            this.ckbSunday.AutoSize = true;
+            this.ckbSunday.Location = new System.Drawing.Point(288, 16);
+            this.ckbSunday.Name = "ckbSunday";
+            this.ckbSunday.Size = new System.Drawing.Size(39, 17);
+            this.ckbSunday.TabIndex = 6;
+            this.ckbSunday.Text = "Su";
+            this.ckbSunday.UseVisualStyleBackColor = true;
+            // 
+            // ckbSaturday
+            // 
+            this.ckbSaturday.AutoSize = true;
+            this.ckbSaturday.Location = new System.Drawing.Point(243, 16);
+            this.ckbSaturday.Name = "ckbSaturday";
+            this.ckbSaturday.Size = new System.Drawing.Size(39, 17);
+            this.ckbSaturday.TabIndex = 5;
+            this.ckbSaturday.Text = "Sa";
+            this.ckbSaturday.UseVisualStyleBackColor = true;
+            // 
+            // ckbFriday
+            // 
+            this.ckbFriday.AutoSize = true;
+            this.ckbFriday.Location = new System.Drawing.Point(202, 16);
+            this.ckbFriday.Name = "ckbFriday";
+            this.ckbFriday.Size = new System.Drawing.Size(35, 17);
+            this.ckbFriday.TabIndex = 4;
+            this.ckbFriday.Text = "Fr";
+            this.ckbFriday.UseVisualStyleBackColor = true;
+            // 
+            // ckbThursday
+            // 
+            this.ckbThursday.AutoSize = true;
+            this.ckbThursday.Location = new System.Drawing.Point(157, 16);
+            this.ckbThursday.Name = "ckbThursday";
+            this.ckbThursday.Size = new System.Drawing.Size(39, 17);
+            this.ckbThursday.TabIndex = 3;
+            this.ckbThursday.Text = "Th";
+            this.ckbThursday.UseVisualStyleBackColor = true;
+            // 
+            // ckbWednesday
+            // 
+            this.ckbWednesday.AutoSize = true;
+            this.ckbWednesday.Location = new System.Drawing.Point(108, 16);
+            this.ckbWednesday.Name = "ckbWednesday";
+            this.ckbWednesday.Size = new System.Drawing.Size(43, 17);
+            this.ckbWednesday.TabIndex = 2;
+            this.ckbWednesday.Text = "We";
+            this.ckbWednesday.UseVisualStyleBackColor = true;
+            // 
+            // ckbTuesday
+            // 
+            this.ckbTuesday.AutoSize = true;
+            this.ckbTuesday.Location = new System.Drawing.Point(63, 16);
+            this.ckbTuesday.Name = "ckbTuesday";
+            this.ckbTuesday.Size = new System.Drawing.Size(39, 17);
+            this.ckbTuesday.TabIndex = 1;
+            this.ckbTuesday.Text = "Tu";
+            this.ckbTuesday.UseVisualStyleBackColor = true;
+            // 
+            // ckbMonday
+            // 
+            this.ckbMonday.AutoSize = true;
+            this.ckbMonday.Location = new System.Drawing.Point(16, 16);
+            this.ckbMonday.Name = "ckbMonday";
+            this.ckbMonday.Size = new System.Drawing.Size(41, 17);
+            this.ckbMonday.TabIndex = 0;
+            this.ckbMonday.Text = "Mo";
+            this.ckbMonday.UseVisualStyleBackColor = true;
+            // 
+            // cmbMonth
+            // 
+            this.cmbMonth.FormattingEnabled = true;
+            this.cmbMonth.Items.AddRange(new object[] {
+            "",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31"});
+            this.cmbMonth.Location = new System.Drawing.Point(571, 16);
+            this.cmbMonth.Name = "cmbMonth";
+            this.cmbMonth.Size = new System.Drawing.Size(37, 21);
+            this.cmbMonth.TabIndex = 18;
+            this.cmbMonth.SelectedIndexChanged += new System.EventHandler(this.cmbMonth_SelectedIndexChanged);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Segoe WP SemiLight", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(552, 76);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 32);
+            this.lblStatus.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -202,7 +350,10 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(720, 312);
+            this.ClientSize = new System.Drawing.Size(732, 312);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.cmbMonth);
+            this.Controls.Add(this.gbWeekDays);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtYourEmail);
             this.Controls.Add(this.txtFilePath);
@@ -224,6 +375,8 @@
             this.Name = "Form1";
             this.Text = "SQL Data Sender";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.gbWeekDays.ResumeLayout(false);
+            this.gbWeekDays.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,6 +402,16 @@
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.TextBox txtYourEmail;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox gbWeekDays;
+        private System.Windows.Forms.CheckBox ckbSunday;
+        private System.Windows.Forms.CheckBox ckbSaturday;
+        private System.Windows.Forms.CheckBox ckbFriday;
+        private System.Windows.Forms.CheckBox ckbThursday;
+        private System.Windows.Forms.CheckBox ckbWednesday;
+        private System.Windows.Forms.CheckBox ckbTuesday;
+        private System.Windows.Forms.CheckBox ckbMonday;
+        private System.Windows.Forms.ComboBox cmbMonth;
+        private System.Windows.Forms.Label lblStatus;
     }
 }
 

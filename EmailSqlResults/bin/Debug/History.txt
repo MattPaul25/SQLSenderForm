@@ -36,3 +36,21 @@ Could not find stored procedure 'dfasdfadfaf'.
 Unknown object type 'Db' used in a CREATE, DROP, or ALTER statement.
 Cannot find this file. Verify the path and file name are correct.
 The item has been moved or deleted.
+The item has been moved or deleted.
+There must be at least one name or contact group in the To, Cc, or Bcc box.
+Cannot find this file. Verify the path and file name are correct.
+There must be at least one name or contact group in the To, Cc, or Bcc box.
+Cannot find this file. Verify the path and file name are correct.
+There must be at least one name or contact group in the To, Cc, or Bcc box.
+The item has been moved or deleted.
+There must be at least one name or contact group in the To, Cc, or Bcc box.
+Cannot find this file. Verify the path and file name are correct.
+There must be at least one name or contact group in the To, Cc, or Bcc box.
+Cannot find this file. Verify the path and file name are correct.
+There must be at least one name or contact group in the To, Cc, or Bcc box.
+Cannot find this file. Verify the path and file name are correct.
+There must be at least one name or contact group in the To, Cc, or Bcc box.
+The item has been moved or deleted.
+There must be at least one name or contact group in the To, Cc, or Bcc box.
+The item has been moved or deleted.
+The item has been moved or deleted.

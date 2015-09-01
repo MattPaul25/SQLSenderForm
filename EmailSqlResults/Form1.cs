@@ -19,6 +19,7 @@ namespace EmailSqlResults
         {
             sqlBoxIndexer = 100;
             InitializeComponent();
+            lblStatus.Text = "Dormant";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -63,6 +64,8 @@ namespace EmailSqlResults
 
         private void btnAddQuery_Click(object sender, EventArgs e)
         {
+            lblStatus.Text = "Ready";
+            lblStatus.ForeColor = Color.Black;
             this.Height += 100;
             TextBox sqlTxt = createSQLBox();
             TextBox sqlName = createNameBox();
@@ -96,45 +99,97 @@ namespace EmailSqlResults
             return qryName;
         }
 
-        private void tmrNow_Tick(object sender, EventArgs e)
+        private void cmbMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblCurrentTime.Text = DateTime.Now.ToString("h:mm:ss tt");
-            
-            if (lblCurrentTime.Text == dtpScheduledTime.Text)
-            {
-                //if time = time to send out, then sendd the email
-                ErrorHandler.AllIssues = "";
-                var findSql = new FindSQL(this);
-                var qryNames = findSql.QryNames;
-                var sqlStrings = findSql.SqlStatements;
-                for (int i = 0; i < qryNames.Count; i++)
-                {
-                    string qryName = qryNames[i];
-                    string sqlString = sqlStrings[i];
-                    var sqlData = new RunQuery(sqlString, qryName).sqlData;
-                    if (sqlData.Rows.Count > 0)
-                    {
-                        var excelPush = new ExcelPush(sqlData, txtFilePath.Text + qryName);
-                    }
-                  
-                }
-                var EmlObj = new EmailObject() { To = txtTo.Text, Body = txtBody.Text, CC = txtCC.Text, Subject = txtSubject.Text };
-                var GenerateEmail = new GenerateEmail(EmlObj, qryNames, txtFilePath.Text);
+            var chckboxes = gbWeekDays.Controls.OfType<CheckBox>();
 
-                if (ErrorHandler.AllIssues != "")
+            if (cmbMonth.Text != "")
+            {
+                foreach (var ckbox in chckboxes)
                 {
-                    //send an error email
-                    var errMail = new EmailObject() 
-                    { 
-                        To = txtYourEmail.Text, 
-                        Subject = "SQL Sender Errors",
-                        Body = ErrorHandler.AllIssues,
-                        CC = txtCC.Text 
-                    };
-                    var mail = new GenerateEmail(errMail);
+                    ckbox.Checked = false;
+                    ckbox.Enabled = false;
+                }
+            }
+            else if (cmbMonth.Text == "")
+            {
+                foreach (var ckbox in chckboxes)
+                {
+                    ckbox.Checked = false;
+                    ckbox.Enabled = true;
                 }
             }
         }
+
+        private void tmrNow_Tick(object sender, EventArgs e)
+        {
+            lblCurrentTime.Text = DateTime.Now.ToString("h:mm:ss tt");
+            if (lblCurrentTime.Text == dtpScheduledTime.Text)
+            {
+
+                if (DateTime.Now.Day.ToString() == cmbMonth.Text)
+                {
+                    Execute();
+                }
+                else
+                {
+                    var chckboxes = gbWeekDays.Controls.OfType<CheckBox>();
+                    foreach (var item in chckboxes)
+                    {
+                        string myDay = DateTime.Today.DayOfWeek.ToString();
+                        if (item.Checked && item.Name == "ckb" + myDay)
+                        {
+                            Execute();
+                            break;
+                        }
+                    }
+                }
+            }
+        }     
+
+        private void Execute()
+        {
+            //runs the process to execute queries and send results
+            lblStatus.Text = "Executing.....";
+            lblStatus.ForeColor =Color.DarkBlue;
+            ErrorHandler.AllIssues = "";
+            var findSql = new FindSQL(this);
+            var qryNames = findSql.QryNames;
+            var sqlStrings = findSql.SqlStatements;
+            for (int i = 0; i < qryNames.Count; i++)
+            {
+                string qryName = qryNames[i];
+                string sqlString = sqlStrings[i];
+                lblStatus.Text = "Running Query..";
+                lblStatus.ForeColor = Color.IndianRed;
+                var sqlData = new RunQuery(sqlString, qryName).sqlData;
+                if (sqlData.Rows.Count > 0)
+                {
+                    lblStatus.Text = "Sending Data";
+                    var excelPush = new ExcelPush(sqlData, txtFilePath.Text + qryName);
+                }
+
+            }
+            var EmlObj = new EmailObject() { To = txtTo.Text, Body = txtBody.Text, CC = txtCC.Text, Subject = txtSubject.Text };
+            var GenerateEmail = new GenerateEmail(EmlObj, qryNames, txtFilePath.Text);
+            if (ErrorHandler.AllIssues != "")
+            {
+                lblStatus.ForeColor = Color.Red;
+                lblStatus.Text = "Sending Errors!";
+                var errMail = new EmailObject()
+                {
+                    To = txtYourEmail.Text,
+                    Subject = "SQL Sender Errors",
+                    Body = ErrorHandler.AllIssues,
+                    CC = txtCC.Text
+                };
+                var mail = new GenerateEmail(errMail);
+            }
+            lblStatus.Text = "Ready";
+            lblStatus.ForeColor = Color.Black;
+        }
+
+        
 
 
     }
