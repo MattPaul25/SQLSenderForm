@@ -54,3 +54,19 @@ The item has been moved or deleted.
 There must be at least one name or contact group in the To, Cc, or Bcc box.
 The item has been moved or deleted.
 The item has been moved or deleted.
+No Query Created
+Unacceptable Folder
+No Query Created
+Unacceptable Folder
+No Query Created
+Unacceptable Folder
+ExecuteReader: CommandText property has not been initialized
+Cannot find this file. Verify the path and file name are correct.
+There must be at least one name or contact group in the To, Cc, or Bcc box.
+Email requires subject and To: to be completed
+No Query Created
+No Query Created
+Email requires subject and To: to be completed
+Email requires subject and To: to be completed
+No Query Created
+Unacceptable Folder

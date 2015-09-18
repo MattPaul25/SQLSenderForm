@@ -58,6 +58,10 @@
             this.ckbMonday = new System.Windows.Forms.CheckBox();
             this.cmbMonth = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnViewLog = new System.Windows.Forms.Button();
+            this.ckbEmail = new System.Windows.Forms.CheckBox();
+            this.btnExecute = new System.Windows.Forms.Button();
             this.gbWeekDays.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,7 +86,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 128);
+            this.label2.Location = new System.Drawing.Point(40, 191);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 3;
@@ -90,22 +94,24 @@
             // 
             // txtSubject
             // 
-            this.txtSubject.Location = new System.Drawing.Point(117, 124);
+            this.txtSubject.Enabled = false;
+            this.txtSubject.Location = new System.Drawing.Point(117, 187);
             this.txtSubject.Name = "txtSubject";
-            this.txtSubject.Size = new System.Drawing.Size(311, 20);
+            this.txtSubject.Size = new System.Drawing.Size(472, 20);
             this.txtSubject.TabIndex = 4;
             // 
             // txtTo
             // 
-            this.txtTo.Location = new System.Drawing.Point(117, 72);
+            this.txtTo.Enabled = false;
+            this.txtTo.Location = new System.Drawing.Point(117, 135);
             this.txtTo.Name = "txtTo";
-            this.txtTo.Size = new System.Drawing.Size(356, 20);
+            this.txtTo.Size = new System.Drawing.Size(472, 20);
             this.txtTo.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(91, 76);
+            this.label3.Location = new System.Drawing.Point(91, 139);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(20, 13);
             this.label3.TabIndex = 5;
@@ -113,7 +119,8 @@
             // 
             // txtBody
             // 
-            this.txtBody.Location = new System.Drawing.Point(117, 182);
+            this.txtBody.Enabled = false;
+            this.txtBody.Location = new System.Drawing.Point(117, 218);
             this.txtBody.Multiline = true;
             this.txtBody.Name = "txtBody";
             this.txtBody.Size = new System.Drawing.Size(571, 90);
@@ -122,7 +129,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(52, 182);
+            this.label4.Location = new System.Drawing.Point(52, 218);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 7;
@@ -130,9 +137,9 @@
             // 
             // btnAddQuery
             // 
-            this.btnAddQuery.Location = new System.Drawing.Point(553, 147);
+            this.btnAddQuery.Location = new System.Drawing.Point(607, 184);
             this.btnAddQuery.Name = "btnAddQuery";
-            this.btnAddQuery.Size = new System.Drawing.Size(75, 23);
+            this.btnAddQuery.Size = new System.Drawing.Size(81, 23);
             this.btnAddQuery.TabIndex = 9;
             this.btnAddQuery.Text = "Add Query";
             this.btnAddQuery.UseVisualStyleBackColor = true;
@@ -141,7 +148,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(90, 103);
+            this.label5.Location = new System.Drawing.Point(90, 166);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(21, 13);
             this.label5.TabIndex = 10;
@@ -149,9 +156,10 @@
             // 
             // txtCC
             // 
-            this.txtCC.Location = new System.Drawing.Point(117, 98);
+            this.txtCC.Enabled = false;
+            this.txtCC.Location = new System.Drawing.Point(117, 161);
             this.txtCC.Name = "txtCC";
-            this.txtCC.Size = new System.Drawing.Size(356, 20);
+            this.txtCC.Size = new System.Drawing.Size(472, 20);
             this.txtCC.TabIndex = 11;
             // 
             // tmrNow
@@ -170,7 +178,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(50, 154);
+            this.label6.Location = new System.Drawing.Point(50, 87);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 13;
@@ -178,9 +186,9 @@
             // 
             // txtFilePath
             // 
-            this.txtFilePath.Location = new System.Drawing.Point(117, 150);
+            this.txtFilePath.Location = new System.Drawing.Point(117, 83);
             this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.Size = new System.Drawing.Size(413, 20);
+            this.txtFilePath.Size = new System.Drawing.Size(472, 20);
             this.txtFilePath.TabIndex = 14;
             // 
             // notifyIcon
@@ -192,15 +200,16 @@
             // 
             // txtYourEmail
             // 
-            this.txtYourEmail.Location = new System.Drawing.Point(117, 46);
+            this.txtYourEmail.Enabled = false;
+            this.txtYourEmail.Location = new System.Drawing.Point(117, 109);
             this.txtYourEmail.Name = "txtYourEmail";
-            this.txtYourEmail.Size = new System.Drawing.Size(356, 20);
+            this.txtYourEmail.Size = new System.Drawing.Size(472, 20);
             this.txtYourEmail.TabIndex = 15;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(54, 49);
+            this.label7.Location = new System.Drawing.Point(54, 112);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(57, 13);
             this.label7.TabIndex = 16;
@@ -215,9 +224,9 @@
             this.gbWeekDays.Controls.Add(this.ckbWednesday);
             this.gbWeekDays.Controls.Add(this.ckbTuesday);
             this.gbWeekDays.Controls.Add(this.ckbMonday);
-            this.gbWeekDays.Location = new System.Drawing.Point(221, 2);
+            this.gbWeekDays.Location = new System.Drawing.Point(224, 2);
             this.gbWeekDays.Name = "gbWeekDays";
-            this.gbWeekDays.Size = new System.Drawing.Size(344, 40);
+            this.gbWeekDays.Size = new System.Drawing.Size(365, 40);
             this.gbWeekDays.TabIndex = 17;
             this.gbWeekDays.TabStop = false;
             this.gbWeekDays.Text = "Week Day";
@@ -225,7 +234,7 @@
             // ckbSunday
             // 
             this.ckbSunday.AutoSize = true;
-            this.ckbSunday.Location = new System.Drawing.Point(288, 16);
+            this.ckbSunday.Location = new System.Drawing.Point(312, 16);
             this.ckbSunday.Name = "ckbSunday";
             this.ckbSunday.Size = new System.Drawing.Size(39, 17);
             this.ckbSunday.TabIndex = 6;
@@ -235,7 +244,7 @@
             // ckbSaturday
             // 
             this.ckbSaturday.AutoSize = true;
-            this.ckbSaturday.Location = new System.Drawing.Point(243, 16);
+            this.ckbSaturday.Location = new System.Drawing.Point(263, 16);
             this.ckbSaturday.Name = "ckbSaturday";
             this.ckbSaturday.Size = new System.Drawing.Size(39, 17);
             this.ckbSaturday.TabIndex = 5;
@@ -245,7 +254,7 @@
             // ckbFriday
             // 
             this.ckbFriday.AutoSize = true;
-            this.ckbFriday.Location = new System.Drawing.Point(202, 16);
+            this.ckbFriday.Location = new System.Drawing.Point(218, 16);
             this.ckbFriday.Name = "ckbFriday";
             this.ckbFriday.Size = new System.Drawing.Size(35, 17);
             this.ckbFriday.TabIndex = 4;
@@ -255,7 +264,7 @@
             // ckbThursday
             // 
             this.ckbThursday.AutoSize = true;
-            this.ckbThursday.Location = new System.Drawing.Point(157, 16);
+            this.ckbThursday.Location = new System.Drawing.Point(169, 16);
             this.ckbThursday.Name = "ckbThursday";
             this.ckbThursday.Size = new System.Drawing.Size(39, 17);
             this.ckbThursday.TabIndex = 3;
@@ -265,7 +274,7 @@
             // ckbWednesday
             // 
             this.ckbWednesday.AutoSize = true;
-            this.ckbWednesday.Location = new System.Drawing.Point(108, 16);
+            this.ckbWednesday.Location = new System.Drawing.Point(116, 16);
             this.ckbWednesday.Name = "ckbWednesday";
             this.ckbWednesday.Size = new System.Drawing.Size(43, 17);
             this.ckbWednesday.TabIndex = 2;
@@ -275,7 +284,7 @@
             // ckbTuesday
             // 
             this.ckbTuesday.AutoSize = true;
-            this.ckbTuesday.Location = new System.Drawing.Point(63, 16);
+            this.ckbTuesday.Location = new System.Drawing.Point(67, 16);
             this.ckbTuesday.Name = "ckbTuesday";
             this.ckbTuesday.Size = new System.Drawing.Size(39, 17);
             this.ckbTuesday.TabIndex = 1;
@@ -328,7 +337,7 @@
             "29",
             "30",
             "31"});
-            this.cmbMonth.Location = new System.Drawing.Point(571, 16);
+            this.cmbMonth.Location = new System.Drawing.Point(595, 16);
             this.cmbMonth.Name = "cmbMonth";
             this.cmbMonth.Size = new System.Drawing.Size(37, 21);
             this.cmbMonth.TabIndex = 18;
@@ -338,10 +347,53 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe WP SemiLight", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(552, 76);
+            this.lblStatus.Location = new System.Drawing.Point(608, 124);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 32);
             this.lblStatus.TabIndex = 19;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(285, 50);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 24);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Server Set Up";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnViewLog
+            // 
+            this.btnViewLog.Location = new System.Drawing.Point(392, 50);
+            this.btnViewLog.Name = "btnViewLog";
+            this.btnViewLog.Size = new System.Drawing.Size(96, 24);
+            this.btnViewLog.TabIndex = 21;
+            this.btnViewLog.Text = "View Log";
+            this.btnViewLog.UseVisualStyleBackColor = true;
+            this.btnViewLog.Click += new System.EventHandler(this.btnViewLog_Click);
+            // 
+            // ckbEmail
+            // 
+            this.ckbEmail.AutoSize = true;
+            this.ckbEmail.BackColor = System.Drawing.Color.Transparent;
+            this.ckbEmail.Location = new System.Drawing.Point(510, 55);
+            this.ckbEmail.Name = "ckbEmail";
+            this.ckbEmail.Size = new System.Drawing.Size(79, 17);
+            this.ckbEmail.TabIndex = 22;
+            this.ckbEmail.Text = "Allow Email";
+            this.ckbEmail.UseVisualStyleBackColor = false;
+            this.ckbEmail.CheckedChanged += new System.EventHandler(this.ckbEmail_CheckedChanged);
+            // 
+            // btnExecute
+            // 
+            this.btnExecute.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnExecute.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnExecute.Location = new System.Drawing.Point(117, 50);
+            this.btnExecute.Name = "btnExecute";
+            this.btnExecute.Size = new System.Drawing.Size(162, 24);
+            this.btnExecute.TabIndex = 23;
+            this.btnExecute.Text = "Execute Now !";
+            this.btnExecute.UseVisualStyleBackColor = false;
+            this.btnExecute.Click += new System.EventHandler(this.btnExecute_Click);
             // 
             // Form1
             // 
@@ -350,7 +402,11 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(732, 312);
+            this.ClientSize = new System.Drawing.Size(743, 340);
+            this.Controls.Add(this.btnExecute);
+            this.Controls.Add(this.ckbEmail);
+            this.Controls.Add(this.btnViewLog);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.cmbMonth);
             this.Controls.Add(this.gbWeekDays);
@@ -412,6 +468,10 @@
         private System.Windows.Forms.CheckBox ckbMonday;
         private System.Windows.Forms.ComboBox cmbMonth;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnViewLog;
+        private System.Windows.Forms.CheckBox ckbEmail;
+        private System.Windows.Forms.Button btnExecute;
     }
 }
 
