@@ -20,6 +20,7 @@ namespace EmailSqlResults
         }
         private void WriteToLog()
         {
+            //note
             StreamReader r = new StreamReader("History.txt");
             txtLogFile.Text = r.ReadToEnd();
         }
