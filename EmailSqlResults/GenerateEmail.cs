@@ -7,6 +7,14 @@ using System.IO;
 
 namespace EmailSqlResults
 {
+    class EmailObject
+    {
+        public string To { get; set; }
+        public string CC { get; set; }
+        public string Subject { get; set; }
+        public string Body { get; set; }
+    }
+
     class GenerateEmail
     {
         private List<string> qryNames;
@@ -15,15 +23,16 @@ namespace EmailSqlResults
 
         public GenerateEmail(EmailObject EmlObj, List<string> QryNames, string DownloadDestination)
         {
-
             qryNames = QryNames;
             AttachmentLocation = DownloadDestination;
             sendEmail(EmlObj);
         }
+
         public GenerateEmail(EmailObject EmlObj)
         {
             sendEmail(EmlObj, true);
         }
+
         private void sendEmail(EmailObject eml, bool errEmail = false)
         {
             string myDate = DateTime.Today.ToString("MMMM dd, yyyy");
@@ -52,13 +61,13 @@ namespace EmailSqlResults
                     isSuccessful = true;
                     mail.Close(Outlook.OlInspectorClose.olDiscard);
                 }
-
             }
             catch (Exception x)
             {
                 ErrorHandler.Handle(x);
             }
         }
+
     }
 }
 

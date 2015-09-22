@@ -13,3 +13,5 @@ C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSq
 C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\bin\Debug\EmailSqlResults.application
 C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.exe.manifest
 C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.application
+C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.LogForm.resources
+C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.ServerSetUp.resources

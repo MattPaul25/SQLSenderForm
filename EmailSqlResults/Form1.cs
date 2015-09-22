@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace EmailSqlResults
 {
@@ -54,9 +55,9 @@ namespace EmailSqlResults
                 MessageBox.Show(x.Message);
             }
         }
+
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-
             this.Visible = true;
             this.WindowState = FormWindowState.Normal;
             notifyIcon.Visible = false;
@@ -86,6 +87,7 @@ namespace EmailSqlResults
             sqlTxt.Width = txtBody.Width;
             return sqlTxt;
         }
+
         private TextBox createNameBox()
         {
             TextBox qryName = new TextBox();
@@ -101,6 +103,8 @@ namespace EmailSqlResults
 
         private void cmbMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            //if month is selected it blocks out weekdays
             var chckboxes = gbWeekDays.Controls.OfType<CheckBox>();
 
             if (cmbMonth.Text != "")
@@ -123,13 +127,13 @@ namespace EmailSqlResults
 
         private void tmrNow_Tick(object sender, EventArgs e)
         {
+            //on timer ticl this code executes -right now its set to one a minute
             lblCurrentTime.Text = DateTime.Now.ToString("h:mm:ss tt");
             if (lblCurrentTime.Text == dtpScheduledTime.Text)
             {
-
                 if (DateTime.Now.Day.ToString() == cmbMonth.Text)
                 {
-                    Execute();
+                    PrepareToExecute();
                 }
                 else
                 {
@@ -139,15 +143,87 @@ namespace EmailSqlResults
                         string myDay = DateTime.Today.DayOfWeek.ToString();
                         if (item.Checked && item.Name == "ckb" + myDay)
                         {
-                            Execute();
+                            PrepareToExecute();
                             break;
                         }
                     }
                 }
             }
-        }     
+        }
 
-        private void Execute()
+        private void ckbEmail_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckbEmail.Checked)
+            {
+                txtBody.Enabled = true;
+                txtCC.Enabled = true;
+                txtSubject.Enabled = true;
+                txtTo.Enabled = true;
+                txtYourEmail.Enabled = true;
+            }
+            else if (!ckbEmail.Checked)
+            {
+                txtBody.Enabled = false;
+                txtCC.Enabled = false;
+                txtSubject.Enabled = false;
+                txtTo.Enabled = false;
+                txtYourEmail.Enabled = false;
+            }
+        }
+
+        private void btnViewLog_Click(object sender, EventArgs e)
+        {
+            LogForm log = new LogForm();
+            log.Show();
+        }
+
+        private void btnExecute_Click(object sender, EventArgs e)
+        {
+            PrepareToExecute();           
+        } 
+
+        private void PrepareToExecute()
+        {
+            //running checks
+
+            if (lblStatus.Text == "Ready") //check if a query has been set up
+            {
+                if (Directory.Exists(txtFilePath.Text)) //check if directory exists
+                {
+                    if (ckbEmail.Checked) //is this query meant to be emailed
+                    {
+                        if (txtSubject.Text != "" && txtTo.Text != "") //are mail sections filled out completely
+                        {
+                            Execute(true);
+                        }
+                        else if (txtSubject.Text == "" || txtTo.Text == "")
+                        {
+                            var ex = new Exception("Email requires subject and To: to be completed");
+                            ErrorHandler.Handle(ex);
+                            MessageBox.Show(ex.Message);
+                        }                        
+                    }
+                    else if (!ckbEmail.Checked)
+                    {
+                        Execute(false);
+                    }
+                }
+                else if (!Directory.Exists(txtFilePath.Text))
+                {
+                    var ex = new Exception("Unacceptable Folder");
+                    ErrorHandler.Handle(ex);
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else if (lblStatus.Text != "Ready")
+            {
+                var ex = new Exception("No Query Created");
+                ErrorHandler.Handle(ex);
+                MessageBox.Show(ex.Message);
+            }
+        }
+       
+        private void Execute(bool ToBeEmailed)
         {
             //runs the process to execute queries and send results
             lblStatus.Text = "Executing.....";
@@ -168,40 +244,35 @@ namespace EmailSqlResults
                     lblStatus.Text = "Sending Data";
                     var excelPush = new ExcelPush(sqlData, txtFilePath.Text + qryName);
                 }
-
             }
-            var EmlObj = new EmailObject() { To = txtTo.Text, Body = txtBody.Text, CC = txtCC.Text, Subject = txtSubject.Text };
-            var GenerateEmail = new GenerateEmail(EmlObj, qryNames, txtFilePath.Text);
-            if (ErrorHandler.AllIssues != "")
+            if (ToBeEmailed) //if the email is needs to be emailed run the rest of the code
             {
-                lblStatus.ForeColor = Color.Red;
-                lblStatus.Text = "Sending Errors!";
-                var errMail = new EmailObject()
+                var EmlObj = new EmailObject() { To = txtTo.Text, Body = txtBody.Text, CC = txtCC.Text, Subject = txtSubject.Text };
+                var GenerateEmail = new GenerateEmail(EmlObj, qryNames, txtFilePath.Text);
+                if (ErrorHandler.AllIssues != "")
                 {
-                    To = txtYourEmail.Text,
-                    Subject = "SQL Sender Errors",
-                    Body = ErrorHandler.AllIssues,
-                    CC = txtCC.Text
-                };
-                var mail = new GenerateEmail(errMail);
+                    lblStatus.ForeColor = Color.Red;
+                    lblStatus.Text = "Sending Errors!";
+                    var errMail = new EmailObject()
+                    {
+                        To = txtYourEmail.Text,
+                        Subject = "SQL Sender Errors",
+                        Body = ErrorHandler.AllIssues,
+                        CC = txtCC.Text
+                    };
+                    var mail = new GenerateEmail(errMail);
+                }
             }
             lblStatus.Text = "Ready";
             lblStatus.ForeColor = Color.Black;
         }
 
-        
-
-
+        private void btnServerSetUp_Click(object sender, EventArgs e)
+        {
+            var serverSetUp = new ServerSetUp();
+            serverSetUp.Show();
+        }
+      
     }
-
-    class EmailObject
-    {
-        public string To { get; set; }
-        public string CC { get; set; }
-        public string Subject { get; set; }
-        public string Body { get; set; }
-    }
-    
-
 
 }
