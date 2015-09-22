@@ -70,3 +70,7 @@ Email requires subject and To: to be completed
 Email requires subject and To: to be completed
 No Query Created
 Unacceptable Folder
+Unacceptable Folder
+Unacceptable Folder
+No Query Created
+Unacceptable Folder

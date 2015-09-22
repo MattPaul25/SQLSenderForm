@@ -54,24 +54,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EmailSqlResults.exe" size="902112">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EmailSqlResults.exe" size="1769952">
       <assemblyIdentity name="EmailSqlResults" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7+l8SKLBosf8V3A3Myq8cvPDUbYI6xzMHJuEmPul2is=</dsig:DigestValue>
+        <dsig:DigestValue>16HbEtPo4f9NkeCCFA6n2rdK1vLVeJuyW5iGfGrK29s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="EmailSqlResults.exe.config" size="1014">
+  <file name="EmailSqlResults.exe.config" size="242">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>dqqoDtOhTtu6jUcUBci3yVTBZERKeXKH/ZWjt2r0dzI=</dsig:DigestValue>
+      <dsig:DigestValue>bgzQFYYOmrzx4zSX6v88boX8UkKizsVgaPrMo0NsVWg=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

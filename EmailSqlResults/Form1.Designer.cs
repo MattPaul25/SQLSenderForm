@@ -58,7 +58,7 @@
             this.ckbMonday = new System.Windows.Forms.CheckBox();
             this.cmbMonth = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnServerSetUp = new System.Windows.Forms.Button();
             this.btnViewLog = new System.Windows.Forms.Button();
             this.ckbEmail = new System.Windows.Forms.CheckBox();
             this.btnExecute = new System.Windows.Forms.Button();
@@ -352,14 +352,15 @@
             this.lblStatus.Size = new System.Drawing.Size(0, 32);
             this.lblStatus.TabIndex = 19;
             // 
-            // button1
+            // btnServerSetUp
             // 
-            this.button1.Location = new System.Drawing.Point(285, 50);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 24);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "Server Set Up";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnServerSetUp.Location = new System.Drawing.Point(285, 50);
+            this.btnServerSetUp.Name = "btnServerSetUp";
+            this.btnServerSetUp.Size = new System.Drawing.Size(96, 24);
+            this.btnServerSetUp.TabIndex = 20;
+            this.btnServerSetUp.Text = "Server Set Up";
+            this.btnServerSetUp.UseVisualStyleBackColor = true;
+            this.btnServerSetUp.Click += new System.EventHandler(this.btnServerSetUp_Click);
             // 
             // btnViewLog
             // 
@@ -406,7 +407,7 @@
             this.Controls.Add(this.btnExecute);
             this.Controls.Add(this.ckbEmail);
             this.Controls.Add(this.btnViewLog);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnServerSetUp);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.cmbMonth);
             this.Controls.Add(this.gbWeekDays);
@@ -468,7 +469,7 @@
         private System.Windows.Forms.CheckBox ckbMonday;
         private System.Windows.Forms.ComboBox cmbMonth;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnServerSetUp;
         private System.Windows.Forms.Button btnViewLog;
         private System.Windows.Forms.CheckBox ckbEmail;
         private System.Windows.Forms.Button btnExecute;

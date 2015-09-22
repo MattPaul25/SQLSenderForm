@@ -25,10 +25,10 @@ namespace EmailSqlResults
         private void connect()
         {
             sqlData = new DataTable();
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(sql, conn);

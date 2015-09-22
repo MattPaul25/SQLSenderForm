@@ -176,6 +176,7 @@ namespace EmailSqlResults
             LogForm log = new LogForm();
             log.Show();
         }
+
         private void btnExecute_Click(object sender, EventArgs e)
         {
             PrepareToExecute();           
@@ -191,7 +192,7 @@ namespace EmailSqlResults
                 {
                     if (ckbEmail.Checked) //is this query meant to be emailed
                     {
-                        if (txtSubject.Text != "" && txtTo.Text != "") //are mail sections filled out properly
+                        if (txtSubject.Text != "" && txtTo.Text != "") //are mail sections filled out completely
                         {
                             Execute(true);
                         }
@@ -264,6 +265,12 @@ namespace EmailSqlResults
             }
             lblStatus.Text = "Ready";
             lblStatus.ForeColor = Color.Black;
+        }
+
+        private void btnServerSetUp_Click(object sender, EventArgs e)
+        {
+            var serverSetUp = new ServerSetUp();
+            serverSetUp.Show();
         }
       
     }
