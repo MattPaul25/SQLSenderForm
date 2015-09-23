@@ -32,22 +32,22 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dtpScheduledTime = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblEmailSubject = new System.Windows.Forms.Label();
             this.txtSubject = new System.Windows.Forms.TextBox();
             this.txtTo = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblTo = new System.Windows.Forms.Label();
             this.txtBody = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblEmailBody = new System.Windows.Forms.Label();
             this.btnAddQuery = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblCC = new System.Windows.Forms.Label();
             this.txtCC = new System.Windows.Forms.TextBox();
             this.tmrNow = new System.Windows.Forms.Timer(this.components);
             this.lblCurrentTime = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblFolderPath = new System.Windows.Forms.Label();
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.txtYourEmail = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblYourEmail = new System.Windows.Forms.Label();
             this.gbWeekDays = new System.Windows.Forms.GroupBox();
             this.ckbSunday = new System.Windows.Forms.CheckBox();
             this.ckbSaturday = new System.Windows.Forms.CheckBox();
@@ -83,14 +83,14 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Time To Execute";
             // 
-            // label2
+            // lblEmailSubject
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 191);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Email Subject";
+            this.lblEmailSubject.AutoSize = true;
+            this.lblEmailSubject.Location = new System.Drawing.Point(40, 191);
+            this.lblEmailSubject.Name = "lblEmailSubject";
+            this.lblEmailSubject.Size = new System.Drawing.Size(71, 13);
+            this.lblEmailSubject.TabIndex = 3;
+            this.lblEmailSubject.Text = "Email Subject";
             // 
             // txtSubject
             // 
@@ -108,14 +108,14 @@
             this.txtTo.Size = new System.Drawing.Size(472, 20);
             this.txtTo.TabIndex = 6;
             // 
-            // label3
+            // lblTo
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(91, 139);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(20, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "To";
+            this.lblTo.AutoSize = true;
+            this.lblTo.Location = new System.Drawing.Point(91, 139);
+            this.lblTo.Name = "lblTo";
+            this.lblTo.Size = new System.Drawing.Size(20, 13);
+            this.lblTo.TabIndex = 5;
+            this.lblTo.Text = "To";
             // 
             // txtBody
             // 
@@ -126,14 +126,14 @@
             this.txtBody.Size = new System.Drawing.Size(571, 90);
             this.txtBody.TabIndex = 8;
             // 
-            // label4
+            // lblEmailBody
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(52, 218);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Email Body";
+            this.lblEmailBody.AutoSize = true;
+            this.lblEmailBody.Location = new System.Drawing.Point(52, 218);
+            this.lblEmailBody.Name = "lblEmailBody";
+            this.lblEmailBody.Size = new System.Drawing.Size(59, 13);
+            this.lblEmailBody.TabIndex = 7;
+            this.lblEmailBody.Text = "Email Body";
             // 
             // btnAddQuery
             // 
@@ -145,14 +145,14 @@
             this.btnAddQuery.UseVisualStyleBackColor = true;
             this.btnAddQuery.Click += new System.EventHandler(this.btnAddQuery_Click);
             // 
-            // label5
+            // lblCC
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(90, 166);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(21, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "CC";
+            this.lblCC.AutoSize = true;
+            this.lblCC.Location = new System.Drawing.Point(90, 166);
+            this.lblCC.Name = "lblCC";
+            this.lblCC.Size = new System.Drawing.Size(21, 13);
+            this.lblCC.TabIndex = 10;
+            this.lblCC.Text = "CC";
             // 
             // txtCC
             // 
@@ -175,14 +175,14 @@
             this.lblCurrentTime.TabIndex = 12;
             this.lblCurrentTime.Text = "time";
             // 
-            // label6
+            // lblFolderPath
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(50, 87);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Folder Path";
+            this.lblFolderPath.AutoSize = true;
+            this.lblFolderPath.Location = new System.Drawing.Point(50, 87);
+            this.lblFolderPath.Name = "lblFolderPath";
+            this.lblFolderPath.Size = new System.Drawing.Size(61, 13);
+            this.lblFolderPath.TabIndex = 13;
+            this.lblFolderPath.Text = "Folder Path";
             // 
             // txtFilePath
             // 
@@ -206,14 +206,14 @@
             this.txtYourEmail.Size = new System.Drawing.Size(472, 20);
             this.txtYourEmail.TabIndex = 15;
             // 
-            // label7
+            // lblYourEmail
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(54, 112);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 13);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Your Email";
+            this.lblYourEmail.AutoSize = true;
+            this.lblYourEmail.Location = new System.Drawing.Point(54, 112);
+            this.lblYourEmail.Name = "lblYourEmail";
+            this.lblYourEmail.Size = new System.Drawing.Size(57, 13);
+            this.lblYourEmail.TabIndex = 16;
+            this.lblYourEmail.Text = "Your Email";
             // 
             // gbWeekDays
             // 
@@ -346,17 +346,17 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Segoe WP SemiLight", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(608, 124);
+            this.lblStatus.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(595, 104);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 32);
+            this.lblStatus.Size = new System.Drawing.Size(0, 25);
             this.lblStatus.TabIndex = 19;
             // 
             // btnServerSetUp
             // 
-            this.btnServerSetUp.Location = new System.Drawing.Point(285, 50);
+            this.btnServerSetUp.Location = new System.Drawing.Point(279, 50);
             this.btnServerSetUp.Name = "btnServerSetUp";
-            this.btnServerSetUp.Size = new System.Drawing.Size(96, 24);
+            this.btnServerSetUp.Size = new System.Drawing.Size(147, 24);
             this.btnServerSetUp.TabIndex = 20;
             this.btnServerSetUp.Text = "Server Set Up";
             this.btnServerSetUp.UseVisualStyleBackColor = true;
@@ -364,9 +364,9 @@
             // 
             // btnViewLog
             // 
-            this.btnViewLog.Location = new System.Drawing.Point(392, 50);
+            this.btnViewLog.Location = new System.Drawing.Point(441, 50);
             this.btnViewLog.Name = "btnViewLog";
-            this.btnViewLog.Size = new System.Drawing.Size(96, 24);
+            this.btnViewLog.Size = new System.Drawing.Size(147, 24);
             this.btnViewLog.TabIndex = 21;
             this.btnViewLog.Text = "View Log";
             this.btnViewLog.UseVisualStyleBackColor = true;
@@ -376,7 +376,7 @@
             // 
             this.ckbEmail.AutoSize = true;
             this.ckbEmail.BackColor = System.Drawing.Color.Transparent;
-            this.ckbEmail.Location = new System.Drawing.Point(510, 55);
+            this.ckbEmail.Location = new System.Drawing.Point(32, 55);
             this.ckbEmail.Name = "ckbEmail";
             this.ckbEmail.Size = new System.Drawing.Size(79, 17);
             this.ckbEmail.TabIndex = 22;
@@ -386,11 +386,12 @@
             // 
             // btnExecute
             // 
-            this.btnExecute.BackColor = System.Drawing.Color.ForestGreen;
-            this.btnExecute.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnExecute.BackColor = System.Drawing.Color.Transparent;
+            this.btnExecute.Enabled = false;
+            this.btnExecute.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnExecute.Location = new System.Drawing.Point(117, 50);
             this.btnExecute.Name = "btnExecute";
-            this.btnExecute.Size = new System.Drawing.Size(162, 24);
+            this.btnExecute.Size = new System.Drawing.Size(147, 24);
             this.btnExecute.TabIndex = 23;
             this.btnExecute.Text = "Execute Now !";
             this.btnExecute.UseVisualStyleBackColor = false;
@@ -411,20 +412,20 @@
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.cmbMonth);
             this.Controls.Add(this.gbWeekDays);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblYourEmail);
             this.Controls.Add(this.txtYourEmail);
             this.Controls.Add(this.txtFilePath);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblFolderPath);
             this.Controls.Add(this.lblCurrentTime);
             this.Controls.Add(this.txtCC);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblCC);
             this.Controls.Add(this.btnAddQuery);
             this.Controls.Add(this.txtBody);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblEmailBody);
             this.Controls.Add(this.txtTo);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblTo);
             this.Controls.Add(this.txtSubject);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblEmailSubject);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpScheduledTime);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -443,22 +444,22 @@
 
         private System.Windows.Forms.DateTimePicker dtpScheduledTime;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblEmailSubject;
         private System.Windows.Forms.TextBox txtSubject;
         private System.Windows.Forms.TextBox txtTo;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTo;
         private System.Windows.Forms.TextBox txtBody;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblEmailBody;
         private System.Windows.Forms.Button btnAddQuery;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblCC;
         private System.Windows.Forms.TextBox txtCC;
         private System.Windows.Forms.Timer tmrNow;
         private System.Windows.Forms.Label lblCurrentTime;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblFolderPath;
         private System.Windows.Forms.TextBox txtFilePath;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.TextBox txtYourEmail;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblYourEmail;
         private System.Windows.Forms.GroupBox gbWeekDays;
         private System.Windows.Forms.CheckBox ckbSunday;
         private System.Windows.Forms.CheckBox ckbSaturday;

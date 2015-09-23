@@ -37,12 +37,13 @@
             this.txtPassWord = new System.Windows.Forms.TextBox();
             this.btnSetServer = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lblConnectionCheck = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 29);
+            this.label1.Location = new System.Drawing.Point(15, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 0;
@@ -51,7 +52,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(61, 60);
+            this.label2.Location = new System.Drawing.Point(49, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 1;
@@ -60,7 +61,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 91);
+            this.label3.Location = new System.Drawing.Point(29, 98);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 2;
@@ -68,30 +69,30 @@
             // 
             // txtServer
             // 
-            this.txtServer.Location = new System.Drawing.Point(100, 29);
+            this.txtServer.Location = new System.Drawing.Point(89, 36);
             this.txtServer.Name = "txtServer";
-            this.txtServer.Size = new System.Drawing.Size(361, 20);
+            this.txtServer.Size = new System.Drawing.Size(396, 20);
             this.txtServer.TabIndex = 3;
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(100, 60);
+            this.txtUserName.Location = new System.Drawing.Point(89, 67);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(361, 20);
+            this.txtUserName.Size = new System.Drawing.Size(396, 20);
             this.txtUserName.TabIndex = 4;
             // 
             // txtPassWord
             // 
-            this.txtPassWord.Location = new System.Drawing.Point(100, 88);
+            this.txtPassWord.Location = new System.Drawing.Point(89, 95);
             this.txtPassWord.Name = "txtPassWord";
-            this.txtPassWord.Size = new System.Drawing.Size(361, 20);
+            this.txtPassWord.Size = new System.Drawing.Size(396, 20);
             this.txtPassWord.TabIndex = 5;
             // 
             // btnSetServer
             // 
-            this.btnSetServer.Location = new System.Drawing.Point(289, 118);
+            this.btnSetServer.Location = new System.Drawing.Point(246, 125);
             this.btnSetServer.Name = "btnSetServer";
-            this.btnSetServer.Size = new System.Drawing.Size(75, 23);
+            this.btnSetServer.Size = new System.Drawing.Size(110, 23);
             this.btnSetServer.TabIndex = 6;
             this.btnSetServer.Text = "Set Server";
             this.btnSetServer.UseVisualStyleBackColor = true;
@@ -99,20 +100,29 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(386, 118);
+            this.btnCancel.Location = new System.Drawing.Point(375, 125);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(110, 23);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // lblConnectionCheck
+            // 
+            this.lblConnectionCheck.AutoSize = true;
+            this.lblConnectionCheck.Location = new System.Drawing.Point(86, 9);
+            this.lblConnectionCheck.Name = "lblConnectionCheck";
+            this.lblConnectionCheck.Size = new System.Drawing.Size(0, 13);
+            this.lblConnectionCheck.TabIndex = 8;
             // 
             // ServerSetUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(501, 153);
+            this.ClientSize = new System.Drawing.Size(508, 158);
+            this.Controls.Add(this.lblConnectionCheck);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSetServer);
             this.Controls.Add(this.txtPassWord);
@@ -121,6 +131,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ServerSetUp";
             this.Text = "ServerSetUp";
@@ -139,5 +150,6 @@
         private System.Windows.Forms.TextBox txtPassWord;
         private System.Windows.Forms.Button btnSetServer;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblConnectionCheck;
     }
 }

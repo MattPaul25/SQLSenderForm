@@ -21,7 +21,29 @@ namespace EmailSqlResults
             sqlBoxIndexer = 100;
             InitializeComponent();
             lblStatus.Text = "Dormant";
+            Connection.ConnectionTested += ConnectionTestEventHandler;
         }
+
+        private void ConnectionTestEventHandler (EventArgs args)
+        {
+            if (Connection.isWorkingConnection)
+            {
+                this.Text = "Sql Data Sender: Connection is Working";
+                btnExecute.Enabled = true;
+                btnExecute.BackColor = Color.LightGreen; Update();
+                lblStatus.Text = "Live Connection"; Update();
+                lblStatus.ForeColor = Color.DarkGreen; Update();
+            }
+            else
+            {
+                this.Text = "Sql Data Sender: No Connection";
+                btnExecute.Enabled = false;
+                btnExecute.BackColor = Color.Transparent; Update();
+                lblStatus.Text = "No Connection"; Update();
+                lblStatus.ForeColor = Color.DarkRed; Update();
+            }
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -103,7 +125,6 @@ namespace EmailSqlResults
 
         private void cmbMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             //if month is selected it blocks out weekdays
             var chckboxes = gbWeekDays.Controls.OfType<CheckBox>();
 
@@ -185,39 +206,47 @@ namespace EmailSqlResults
         private void PrepareToExecute()
         {
             //running checks
-
-            if (lblStatus.Text == "Ready") //check if a query has been set up
+            if (Connection.ConnectionString != null) //check if server is set up
             {
-                if (Directory.Exists(txtFilePath.Text)) //check if directory exists
+                if (lblStatus.Text == "Ready") //check if a query has been set up
                 {
-                    if (ckbEmail.Checked) //is this query meant to be emailed
+                    if (Directory.Exists(txtFilePath.Text)) //check if directory exists
                     {
-                        if (txtSubject.Text != "" && txtTo.Text != "") //are mail sections filled out completely
+                        if (ckbEmail.Checked) //is this query meant to be emailed
                         {
-                            Execute(true);
+                            if (txtSubject.Text != "" && txtTo.Text != "") //are mail sections filled out completely
+                            {
+                                Execute(true);
+                            }
+                            else if (txtSubject.Text == "" || txtTo.Text == "")
+                            {
+                                var ex = new Exception("Email requires subject and To: to be completed");
+                                ErrorHandler.Handle(ex);
+                                MessageBox.Show(ex.Message);
+                            }
                         }
-                        else if (txtSubject.Text == "" || txtTo.Text == "")
+                        else if (!ckbEmail.Checked)
                         {
-                            var ex = new Exception("Email requires subject and To: to be completed");
-                            ErrorHandler.Handle(ex);
-                            MessageBox.Show(ex.Message);
-                        }                        
+                            Execute(false);
+                        }
                     }
-                    else if (!ckbEmail.Checked)
+                    else if (!Directory.Exists(txtFilePath.Text))
                     {
-                        Execute(false);
+                        var ex = new Exception("Unacceptable Folder");
+                        ErrorHandler.Handle(ex);
+                        MessageBox.Show(ex.Message);
                     }
                 }
-                else if (!Directory.Exists(txtFilePath.Text))
+                else if (lblStatus.Text != "Ready")
                 {
-                    var ex = new Exception("Unacceptable Folder");
+                    var ex = new Exception("No Query Created");
                     ErrorHandler.Handle(ex);
                     MessageBox.Show(ex.Message);
                 }
             }
-            else if (lblStatus.Text != "Ready")
+            else if (Connection.ConnectionString == null)
             {
-                var ex = new Exception("No Query Created");
+                var ex = new Exception("Server is not set up");
                 ErrorHandler.Handle(ex);
                 MessageBox.Show(ex.Message);
             }
@@ -226,8 +255,8 @@ namespace EmailSqlResults
         private void Execute(bool ToBeEmailed)
         {
             //runs the process to execute queries and send results
-            lblStatus.Text = "Executing.....";
-            lblStatus.ForeColor =Color.DarkBlue;
+            lblStatus.Text = "Executing....."; Update();
+            lblStatus.ForeColor = Color.DarkBlue; Update();
             ErrorHandler.AllIssues = "";
             var findSql = new FindSQL(this);
             var qryNames = findSql.QryNames;
@@ -236,13 +265,18 @@ namespace EmailSqlResults
             {
                 string qryName = qryNames[i];
                 string sqlString = sqlStrings[i];
-                lblStatus.Text = "Running Query..";
-                lblStatus.ForeColor = Color.IndianRed;
+                lblStatus.Text = "Running Query.."; Update();
+                lblStatus.ForeColor = Color.IndianRed; Update();
                 var sqlData = new RunQuery(sqlString, qryName).sqlData;
                 if (sqlData.Rows.Count > 0)
                 {
                     lblStatus.Text = "Sending Data";
                     var excelPush = new ExcelPush(sqlData, txtFilePath.Text + qryName);
+                }
+                else if (sqlData.Rows.Count <= 0)
+                {
+                    var ex = new Exception("The query resulted in no data");
+                    ErrorHandler.Handle(ex);
                 }
             }
             if (ToBeEmailed) //if the email is needs to be emailed run the rest of the code
@@ -251,9 +285,9 @@ namespace EmailSqlResults
                 var GenerateEmail = new GenerateEmail(EmlObj, qryNames, txtFilePath.Text);
                 if (ErrorHandler.AllIssues != "")
                 {
-                    lblStatus.ForeColor = Color.Red;
-                    lblStatus.Text = "Sending Errors!";
-                    var errMail = new EmailObject()
+                    lblStatus.ForeColor = Color.Red; Update();
+                    lblStatus.Text = "Sending Errors!"; Update();
+                    var errMail = new EmailObject()  //Create Email Object;
                     {
                         To = txtYourEmail.Text,
                         Subject = "SQL Sender Errors",
@@ -263,15 +297,18 @@ namespace EmailSqlResults
                     var mail = new GenerateEmail(errMail);
                 }
             }
-            lblStatus.Text = "Ready";
-            lblStatus.ForeColor = Color.Black;
+            lblStatus.Text = "Ready"; Update();
+            lblStatus.ForeColor = Color.Black; Update();
         }
 
         private void btnServerSetUp_Click(object sender, EventArgs e)
         {
             var serverSetUp = new ServerSetUp();
             serverSetUp.Show();
+           
         }
+
+        
       
     }
 

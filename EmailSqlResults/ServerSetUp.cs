@@ -19,15 +19,25 @@ namespace EmailSqlResults
 
         private void btnSetServer_Click(object sender, EventArgs e)
         {
+            lblConnectionCheck.Text = "Checking Server Connection"; Update();
             if (txtServer.Text != "" && txtPassWord.Text != "" && txtUserName.Text != "")
             {
-                Connection.SetValues(txtServer.Text, txtPassWord.Text, txtUserName.Text);
-                this.Close();
+                Connection.SetValues(txtServer.Text, txtUserName.Text, txtPassWord.Text);
+                if (Connection.isWorkingConnection)
+                {
+                    MessageBox.Show("Connection is Successfull!");
+                    this.Close();
+                }
+                else if (!Connection.isWorkingConnection)
+                {
+                    MessageBox.Show("Incorrect Parameters: " + Connection.ErrMessage);
+                }
             }
             else
             {
                 MessageBox.Show("Please fill out all required fields");
             }
+            lblConnectionCheck.Text = ""; Update();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -36,13 +46,5 @@ namespace EmailSqlResults
         }
     }
 
-    public static class Connection
-    {
-        public static void SetValues(string serverName, string userName, string passWord)
-        {
-            string connection = "Server={0}; Database=Master; User Id={1}; Password={2}; Connection Timeout=2000";
-            ConnectionString = String.Format(connection, serverName, userName, passWord);
-        }
-        public static string ConnectionString { get; private set; }
-    }
+   
 }

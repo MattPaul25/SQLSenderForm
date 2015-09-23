@@ -25,7 +25,6 @@ namespace EmailSqlResults
         private void connect()
         {
             sqlData = new DataTable();
-
             try
             {
                 using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
@@ -40,10 +39,6 @@ namespace EmailSqlResults
             {
                 ErrorHandler.Handle(x);
             }
-
         }
-
     }
-
-  
 }

@@ -74,3 +74,21 @@ Unacceptable Folder
 Unacceptable Folder
 No Query Created
 Unacceptable Folder
+The ConnectionString property has not been initialized.
+Login failed for user 'dixieBMW1'.
+Login failed for user 'dixieBMW1'.
+The ConnectionString property has not been initialized.
+The query resulted in no data
+No Query Created
+Unacceptable Folder
+Server is not set up
+Server is not set up
+No Query Created
+No Query Created
+Unacceptable Folder
+Invalid object name 'Person'.
+The query resulted in no data
+Cannot find this file. Verify the path and file name are correct.
+The item has been moved or deleted.
+The item has been moved or deleted.
+The item has been moved or deleted.
