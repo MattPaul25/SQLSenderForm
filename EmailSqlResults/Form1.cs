@@ -30,17 +30,19 @@ namespace EmailSqlResults
             {
                 this.Text = "Sql Data Sender: Connection is Working";
                 btnExecute.Enabled = true;
-                btnExecute.BackColor = Color.LightGreen; Update();
-                lblStatus.Text = "Live Connection"; Update();
-                lblStatus.ForeColor = Color.DarkGreen; Update();
+                btnExecute.BackColor = Color.LightGreen; 
+                lblStatus.Text = "Live Connection"; 
+                lblStatus.ForeColor = Color.DarkGreen; 
+                Update();
             }
             else
             {
                 this.Text = "Sql Data Sender: No Connection";
                 btnExecute.Enabled = false;
-                btnExecute.BackColor = Color.Transparent; Update();
-                lblStatus.Text = "No Connection"; Update();
-                lblStatus.ForeColor = Color.DarkRed; Update();
+                btnExecute.BackColor = Color.Transparent; 
+                lblStatus.Text = "No Connection"; 
+                lblStatus.ForeColor = Color.DarkRed; 
+                Update();
             }
         }
 
@@ -255,8 +257,9 @@ namespace EmailSqlResults
         private void Execute(bool ToBeEmailed)
         {
             //runs the process to execute queries and send results
-            lblStatus.Text = "Executing....."; Update();
-            lblStatus.ForeColor = Color.DarkBlue; Update();
+            lblStatus.Text = "Executing.....";
+            lblStatus.ForeColor = Color.DarkBlue; 
+            Update();
             ErrorHandler.AllIssues = "";
             var findSql = new FindSQL(this);
             var qryNames = findSql.QryNames;
@@ -265,8 +268,9 @@ namespace EmailSqlResults
             {
                 string qryName = qryNames[i];
                 string sqlString = sqlStrings[i];
-                lblStatus.Text = "Running Query.."; Update();
-                lblStatus.ForeColor = Color.IndianRed; Update();
+                lblStatus.Text = "Running Query..";
+                lblStatus.ForeColor = Color.IndianRed; 
+                Update();
                 var sqlData = new RunQuery(sqlString, qryName).sqlData;
                 if (sqlData.Rows.Count > 0)
                 {
@@ -285,8 +289,9 @@ namespace EmailSqlResults
                 var GenerateEmail = new GenerateEmail(EmlObj, qryNames, txtFilePath.Text);
                 if (ErrorHandler.AllIssues != "")
                 {
-                    lblStatus.ForeColor = Color.Red; Update();
-                    lblStatus.Text = "Sending Errors!"; Update();
+                    lblStatus.ForeColor = Color.Red;
+                    lblStatus.Text = "Sending Errors!"; 
+                    Update();
                     var errMail = new EmailObject()  //Create Email Object;
                     {
                         To = txtYourEmail.Text,
@@ -297,8 +302,9 @@ namespace EmailSqlResults
                     var mail = new GenerateEmail(errMail);
                 }
             }
-            lblStatus.Text = "Ready"; Update();
-            lblStatus.ForeColor = Color.Black; Update();
+            lblStatus.Text = "Ready";
+            lblStatus.ForeColor = Color.Black; 
+            Update();
         }
 
         private void btnServerSetUp_Click(object sender, EventArgs e)
