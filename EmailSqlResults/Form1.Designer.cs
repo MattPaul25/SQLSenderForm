@@ -190,6 +190,7 @@
             this.txtFilePath.Name = "txtFilePath";
             this.txtFilePath.Size = new System.Drawing.Size(472, 20);
             this.txtFilePath.TabIndex = 14;
+            this.txtFilePath.Leave += new System.EventHandler(this.txtFilePath_Leave);
             // 
             // notifyIcon
             // 

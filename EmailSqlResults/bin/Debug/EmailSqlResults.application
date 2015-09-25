@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="EmailSqlResults.exe.manifest" size="3800">
+    <dependentAssembly dependencyType="install" codebase="EmailSqlResults.exe.manifest" size="3099">
       <assemblyIdentity name="EmailSqlResults.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>G47KLfulrZqX/kWN5omGw/I+X1IF5z6HQgkLNFFD8bw=</dsig:DigestValue>
+        <dsig:DigestValue>B4axa9dRDoN5Qw8HBeaBO92bP7CZmpxTsp73D3wCBaA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

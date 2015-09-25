@@ -4,6 +4,8 @@ using System.Linq;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Text;
 using System.IO;
+using System.Runtime.InteropServices;
+
 
 namespace EmailSqlResults
 {
@@ -36,12 +38,13 @@ namespace EmailSqlResults
         private void sendEmail(EmailObject eml, bool errEmail = false)
         {
             string myDate = DateTime.Today.ToString("MMMM dd, yyyy");
-            try
-            {
-                Outlook.Application app = new Outlook.Application();
-                Outlook.MailItem mail = app.CreateItem(Outlook.OlItemType.olMailItem);
-                int fileCount = 0;
+            Outlook._Application _app = new Outlook.Application();
+            Outlook._NameSpace _ns = _app.GetNamespace("MAPI");
+            Outlook.MailItem mail = (Outlook.MailItem)_app.CreateItem(Outlook.OlItemType.olMailItem);
 
+            try
+            {                
+                int fileCount = 0;
                 if (qryNames != null)
                 {
                     foreach (var qryName in qryNames)
@@ -52,22 +55,34 @@ namespace EmailSqlResults
                 }
                 if (errEmail || fileCount > 0)
                 {
-                    mail.Importance = Outlook.OlImportance.olImportanceHigh;
+
                     mail.Subject = myDate + " " + eml.Subject;
                     mail.To = eml.To;
                     mail.CC = eml.CC;
                     mail.Body = eml.Body;
-                    mail.Send();
-                    isSuccessful = true;
+                    mail.Importance = Outlook.OlImportance.olImportanceNormal;
+                    System.Threading.Thread.Sleep(5000); //wait for the outlook application to startup
+                    ((Outlook.MailItem)mail).Send();
+                    _ns.SendAndReceive(true); //send and receive
                     mail.Close(Outlook.OlInspectorClose.olDiscard);
+                    _app.Quit();
+                    isSuccessful = true;
+                }
+            }
+            catch (COMException cEx)
+            {
+                if (cEx.Message != "The item has been moved or deleted.")
+                {
+                    ErrorHandler.Handle(cEx);
+                    isSuccessful = false;
                 }
             }
             catch (Exception x)
             {
                 ErrorHandler.Handle(x);
-            }
+                isSuccessful = false;
+            }           
         }
-
     }
 }
 

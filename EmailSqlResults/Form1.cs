@@ -18,6 +18,7 @@ namespace EmailSqlResults
 
         public Form1()
         {
+            qryIndex = 0;
             sqlBoxIndexer = 100;
             InitializeComponent();
             lblStatus.Text = "Dormant";
@@ -206,11 +207,11 @@ namespace EmailSqlResults
         } 
 
         private void PrepareToExecute()
-        {
+        {   
             //running checks
             if (Connection.ConnectionString != null) //check if server is set up
             {
-                if (lblStatus.Text == "Ready") //check if a query has been set up
+                if (qryIndex > 0) //check if a query has been set up
                 {
                     if (Directory.Exists(txtFilePath.Text)) //check if directory exists
                     {
@@ -239,7 +240,7 @@ namespace EmailSqlResults
                         MessageBox.Show(ex.Message);
                     }
                 }
-                else if (lblStatus.Text != "Ready")
+                else if (qryIndex == 0)
                 {
                     var ex = new Exception("No Query Created");
                     ErrorHandler.Handle(ex);
@@ -312,6 +313,16 @@ namespace EmailSqlResults
             var serverSetUp = new ServerSetUp();
             serverSetUp.Show();
            
+        }
+
+        private void txtFilePath_Leave(object sender, EventArgs e)
+        {
+            var filePathArr = txtFilePath.Text.ToArray();
+            //making path legitimate by adding on slash
+            if (filePathArr[filePathArr.Length - 1] != '\\' && filePathArr[filePathArr.Length - 1] != '/')
+            {
+                txtFilePath.Text = txtFilePath.Text + "/";
+            }
         }
 
         

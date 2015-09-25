@@ -58,10 +58,10 @@ namespace EmailSqlResults
                 WbObj.SaveAs(location);
                 isSuccessful = true;
             }
-            catch (COMException x)
+            catch (COMException cEx)
             {
                 isSuccessful = false;
-                ErrorHandler.Handle(x);
+                ErrorHandler.Handle(cEx);
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace EmailSqlResults
             finally
             {
                 WbObj.Close();
-                
+                XlObj.Quit();                
             }
         }
     }
