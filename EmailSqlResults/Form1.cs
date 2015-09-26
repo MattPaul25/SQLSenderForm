@@ -15,9 +15,15 @@ namespace EmailSqlResults
     {
         static int sqlBoxIndexer;
         static int qryIndex;
+        string FormData;
 
         public Form1()
         {
+            FormData = "FormData.txt";
+            if (File.Exists(FormData))
+            {
+                FormData_Read();
+            }
             qryIndex = 0;
             sqlBoxIndexer = 100;
             InitializeComponent();
@@ -126,6 +132,17 @@ namespace EmailSqlResults
             return qryName;
         }
 
+
+        private void txtFilePath_Leave(object sender, EventArgs e)
+        {
+            var filePathArr = txtFilePath.Text.ToArray();
+            //making path legitimate by adding on slash
+            if (filePathArr[filePathArr.Length - 1] != '\\' && filePathArr[filePathArr.Length - 1] != '/')
+            {
+                txtFilePath.Text = txtFilePath.Text + "/";
+            }
+        }
+
         private void cmbMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if month is selected it blocks out weekdays
@@ -167,6 +184,7 @@ namespace EmailSqlResults
                         string myDay = DateTime.Today.DayOfWeek.ToString();
                         if (item.Checked && item.Name == "ckb" + myDay)
                         {
+                            
                             PrepareToExecute();
                             break;
                         }
@@ -199,6 +217,12 @@ namespace EmailSqlResults
         {
             LogForm log = new LogForm();
             log.Show();
+        }
+
+        private void btnServerSetUp_Click(object sender, EventArgs e)
+        {
+            var serverSetUp = new ServerSetUp();
+            serverSetUp.Show();
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
@@ -258,6 +282,7 @@ namespace EmailSqlResults
         private void Execute(bool ToBeEmailed)
         {
             //runs the process to execute queries and send results
+            FormData_Write();
             lblStatus.Text = "Executing.....";
             lblStatus.ForeColor = Color.DarkBlue; 
             Update();
@@ -308,25 +333,37 @@ namespace EmailSqlResults
             Update();
         }
 
-        private void btnServerSetUp_Click(object sender, EventArgs e)
+        private void FormData_Write()
         {
-            var serverSetUp = new ServerSetUp();
-            serverSetUp.Show();
-           
-        }
-
-        private void txtFilePath_Leave(object sender, EventArgs e)
-        {
-            var filePathArr = txtFilePath.Text.ToArray();
-            //making path legitimate by adding on slash
-            if (filePathArr[filePathArr.Length - 1] != '\\' && filePathArr[filePathArr.Length - 1] != '/')
+            using (StreamWriter sw = new StreamWriter(FormData, false))
             {
-                txtFilePath.Text = txtFilePath.Text + "/";
+                foreach (Control c in this.Controls)
+                {
+                    if (c.GetType().ToString() == "System.Windows.Form.Textbox")
+                    {
+                        sw.WriteLine(c.Name + "|" + c.Text);
+                    }
+                }
             }
         }
-
-        
-      
+        private void FormData_Read()
+        {
+            using (StreamReader sr = new StreamReader(FormData))
+            {
+               string currentLine = sr.ReadLine();
+               while (currentLine != null)
+               {
+                   foreach (Control c in this.Controls)
+                   {
+                       if (c.GetType().ToString() == "System.Windows.Form.Textbox")
+                       {
+                           c.Text = currentLine;
+                       }
+                   }
+                   currentLine = sr.ReadLine();
+               }
+            }
+        }        
     }
 
 }

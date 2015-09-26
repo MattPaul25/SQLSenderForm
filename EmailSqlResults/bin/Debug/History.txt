@@ -157,3 +157,5 @@ The item has been moved or deleted.
 The item has been moved or deleted.
 Unacceptable Folder
 No Query Created
+Incorrect syntax near '/'.
+The query resulted in no data
