@@ -38,10 +38,10 @@ namespace EmailSqlResults
         private void sendEmail(EmailObject eml, bool errEmail = false)
         {
             string myDate = DateTime.Today.ToString("MMMM dd, yyyy");
-            Outlook._Application _app = new Outlook.Application();
+            Outlook._Application _app = new Outlook.Application();  
             Outlook._NameSpace _ns = _app.GetNamespace("MAPI");
+            //System.Threading.Thread.Sleep(5000); //wait for app to start
             Outlook.MailItem mail = (Outlook.MailItem)_app.CreateItem(Outlook.OlItemType.olMailItem);
-
             try
             {                
                 int fileCount = 0;
@@ -55,13 +55,12 @@ namespace EmailSqlResults
                 }
                 if (errEmail || fileCount > 0)
                 {
-
                     mail.Subject = myDate + " " + eml.Subject;
                     mail.To = eml.To;
                     mail.CC = eml.CC;
                     mail.Body = eml.Body;
-                    mail.Importance = Outlook.OlImportance.olImportanceNormal;
-                    System.Threading.Thread.Sleep(5000); //wait for the outlook application to startup
+                    mail.Importance = Outlook.OlImportance.olImportanceNormal;                    
+                    //System.Threading.Thread.Sleep(5000); //wait for application to catch up with mail object
                     ((Outlook.MailItem)mail).Send();
                     _ns.SendAndReceive(true); //send and receive
                     mail.Close(Outlook.OlInspectorClose.olDiscard);

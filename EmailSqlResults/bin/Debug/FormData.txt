@@ -1,0 +1,14 @@
+<item>txtYourEmail</item><value>matt.farguson@gmail.com</value>
+<item>txtFilePath</item><value>C:\Users\fargusonm\Documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults/</value>
+<item>txtCC</item><value></value>
+<item>txtBody</item><value>bod</value>
+<item>txtTo</item><value>matt.farguson@dowjones.com</value>
+<item>txtSubject</item><value>test</value>
+<item>qryName0</item><value>qryName0</value>
+<item>sqlbox0</item><value>use UniversalTool
+
+select top 10 * from businessentity</value>
+<item>qryName1</item><value>Query2</value>
+<item>sqlbox1</item><value>use UniversalTool
+
+select top 100 * from businessentity</value>
