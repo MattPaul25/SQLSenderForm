@@ -123,7 +123,7 @@
             this.txtBody.Location = new System.Drawing.Point(117, 218);
             this.txtBody.Multiline = true;
             this.txtBody.Name = "txtBody";
-            this.txtBody.Size = new System.Drawing.Size(571, 90);
+            this.txtBody.Size = new System.Drawing.Size(571, 119);
             this.txtBody.TabIndex = 8;
             // 
             // lblEmailBody
@@ -405,7 +405,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(743, 340);
+            this.ClientSize = new System.Drawing.Size(756, 367);
             this.Controls.Add(this.btnExecute);
             this.Controls.Add(this.ckbEmail);
             this.Controls.Add(this.btnViewLog);

@@ -13,18 +13,26 @@ namespace EmailSqlResults
 {
     public partial class Form1 : Form
     {
+        enum RbType
+        {
+            Excel, CSV, Text
+        }
+
         #region Attributes
         static int sqlBoxIndexer;
         static int qryIndex;
         string FormData;
+        int sqlBoxIncrementer;
         #endregion
+
 
         #region Constructor
         public Form1()
         {
             FormData = "FormData.txt";
             qryIndex = 0;
-            sqlBoxIndexer = 100;
+            sqlBoxIncrementer = 150;
+            sqlBoxIndexer = sqlBoxIncrementer;
             InitializeComponent();
             lblStatus.Text = "Dormant";
             Connection.ConnectionTested += ConnectionTestEventHandler;
@@ -200,6 +208,11 @@ namespace EmailSqlResults
         {
             PrepareToExecute();           
         }
+
+        private void ShowSQLForm(object sender, EventArgs e)
+        {
+            MessageBox.Show(sender.Text);
+        }
         #endregion
 
         #region Methods
@@ -207,38 +220,70 @@ namespace EmailSqlResults
         {
             TextBox sqlTxt = new TextBox();
             sqlTxt.Name = "sqlbox" + qryIndex;
-            Point sqlTxtLocation = new Point(txtBody.Location.X, txtBody.Location.Y + sqlBoxIndexer);
             sqlTxt.Multiline = true;
-            sqlTxt.Location = sqlTxtLocation;
+            sqlTxt.Location = new Point(txtBody.Location.X, txtBody.Location.Y + sqlBoxIndexer);
             sqlTxt.Height = txtBody.Height;
             sqlTxt.Width = txtBody.Width;
+
+            sqlTxt.DoubleClick += new EventHandler(ShowSQLForm);
             return sqlTxt;
         }
+
+    
 
         private TextBox createNameBox()
         {
             TextBox qryName = new TextBox();
             qryName.Name = "qryName" + qryIndex;
-            Point sqlTxtLocation = new Point(txtBody.Location.X - 90, txtBody.Location.Y + sqlBoxIndexer);
             qryName.Text = qryName.Name;
             qryName.Multiline = false;
-            qryName.Location = sqlTxtLocation;
             qryName.Height = 15;
             qryName.Width = 90;
+            qryName.Location = new Point(txtBody.Location.X, txtBody.Location.Y + sqlBoxIndexer - qryName.Height);            
             return qryName;
         }
 
+        private FlowLayoutPanel CreatePanel()
+        {
+            FlowLayoutPanel panelRbs = new FlowLayoutPanel();
+            panelRbs.Name = "panelRbs" + qryIndex;
+            panelRbs.Location = new Point(txtBody.Location.X - 90, txtBody.Location.Y + sqlBoxIndexer);
+            int boxSize = 80;
+            panelRbs.Height = boxSize;
+            panelRbs.Width = boxSize;
+            panelRbs.BringToFront();
+            var rb1 = Rb(RbType.Excel);
+            var rb2 = Rb(RbType.CSV);
+            var rb3 = Rb(RbType.Text);
+            panelRbs.Controls.AddRange(new Control[] {rb1, rb2, rb3});
+            return panelRbs;
+        }
+       
+        private RadioButton Rb(RbType rbt)
+        {
+            RadioButton rb = new RadioButton();
+            rb.Name = "rb" + rbt.ToString() + qryIndex;
+            rb.Text = rbt.ToString();
+            rb.Margin = new Padding(0,0,0,0);
+            Font f = new Font("SansSerif", 7f);            
+            rb.Font = f;
+            return rb;            
+        }
         private void AddQuery()
         {
             lblStatus.ForeColor = Color.Black;
-            this.Height += 100;
+            this.Height += sqlBoxIncrementer;
             TextBox sqlTxt = createSQLBox();
             TextBox sqlName = createNameBox();
+            Panel RbPanel = CreatePanel();
             this.Controls.Add(sqlName);
             this.Controls.Add(sqlTxt);
+            this.Controls.Add(RbPanel);
             qryIndex++;
-            sqlBoxIndexer += 100;
+            sqlBoxIndexer += sqlBoxIncrementer;
         }
+
+       
 
         private void PrepareToExecute()
         {   
@@ -418,6 +463,13 @@ namespace EmailSqlResults
             }
         }
         #endregion
+
+
+    }
+
+    public class DoubleClickEventArgs : EventArgs
+    {
+        public string DoubleClicked { get; set; }
     }
 
 }
