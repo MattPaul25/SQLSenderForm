@@ -99,6 +99,12 @@
     <Compile Include="ServerSetUp.Designer.cs">
       <DependentUpon>ServerSetUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="SqlViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SqlViewer.Designer.cs">
+      <DependentUpon>SqlViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -117,6 +123,9 @@
     </Compile>
     <EmbeddedResource Include="ServerSetUp.resx">
       <DependentUpon>ServerSetUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SqlViewer.resx">
+      <DependentUpon>SqlViewer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="EmailSqlResults_TemporaryKey.pfx" />

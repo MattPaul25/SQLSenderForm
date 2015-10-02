@@ -20,11 +20,10 @@ namespace EmailSqlResults
 
         #region Attributes
         static int sqlBoxIndexer;
-        static int qryIndex;
+        static int qryIndex;        
         string FormData;
         int sqlBoxIncrementer;
         #endregion
-
 
         #region Constructor
         public Form1()
@@ -36,7 +35,6 @@ namespace EmailSqlResults
             InitializeComponent();
             lblStatus.Text = "Dormant";
             Connection.ConnectionTested += ConnectionTestEventHandler;
-
             if (File.Exists(FormData))
             {
                 FormData_Read();
@@ -66,7 +64,6 @@ namespace EmailSqlResults
                 Update();
             }
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             dtpScheduledTime.Text = DateTime.Now.AddHours(1).ToString("h:mm:ss tt");
@@ -74,7 +71,6 @@ namespace EmailSqlResults
             tmrNow.Tick += new EventHandler(tmrNow_Tick);
             tmrNow.Enabled = true;
         }
-
         protected override void OnResize(EventArgs e)
         {
             try
@@ -99,19 +95,16 @@ namespace EmailSqlResults
                 MessageBox.Show(x.Message);
             }
         }
-
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.Visible = true;
             this.WindowState = FormWindowState.Normal;
             notifyIcon.Visible = false;
         } 
-
         private void btnAddQuery_Click(object sender, EventArgs e)
         {
             AddQuery();
         }
-
         private void txtFilePath_Leave(object sender, EventArgs e)
         {
             var filePathArr = txtFilePath.Text.ToArray();
@@ -121,7 +114,6 @@ namespace EmailSqlResults
                 txtFilePath.Text = txtFilePath.Text + "/";
             }
         }
-
         private void cmbMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if month is selected it blocks out weekdays
@@ -144,7 +136,6 @@ namespace EmailSqlResults
                 }
             }
         }
-
         private void tmrNow_Tick(object sender, EventArgs e)
         {
             //on timer ticl this code executes -right now its set to one a minute
@@ -171,7 +162,6 @@ namespace EmailSqlResults
                 }
             }
         }
-
         private void ckbEmail_CheckedChanged(object sender, EventArgs e)
         {
             if (ckbEmail.Checked)
@@ -191,27 +181,42 @@ namespace EmailSqlResults
                 txtYourEmail.Enabled = false;
             }
         }
-
         private void btnViewLog_Click(object sender, EventArgs e)
         {
             LogForm log = new LogForm();
             log.Show();
         }
-
         private void btnServerSetUp_Click(object sender, EventArgs e)
         {
             var serverSetUp = new ServerSetUp();
             serverSetUp.Show();
         }
-
         private void btnExecute_Click(object sender, EventArgs e)
         {
             PrepareToExecute();           
         }
-
         private void ShowSQLForm(object sender, EventArgs e)
         {
-            MessageBox.Show(sender.Text);
+            var senderText = ((TextBox)sender); //down casting the object allows me to access its members
+            var sqlview = new Sqlviewer(senderText);  
+        }
+        private void ChangeLabel(object sender, EventArgs e)
+        {
+            var rb = (RadioButton)sender;
+            int rbSpaceIndex = rb.Name.Search("_") + 1;
+            string rbQryIndex = rb.Name.Substring(rbSpaceIndex, rb.Name.Length - rbSpaceIndex);
+            
+            foreach (Control c in this.Controls)
+            {
+                var controlType = c.GetType().ToString();
+                if (controlType == "System.Windows.Forms.Label" && c.Name.Substring(0,3) == "lbl")
+                {
+                    int lblSpaceIndex = c.Name.Search("_") + 1;
+                    string lblQryIndex = c.Name.Substring(lblSpaceIndex, c.Name.Length - lblSpaceIndex);
+                    if (lblQryIndex == rbQryIndex)
+                        c.Text = rb.Text;   
+                }
+            }
         }
         #endregion
 
@@ -224,12 +229,9 @@ namespace EmailSqlResults
             sqlTxt.Location = new Point(txtBody.Location.X, txtBody.Location.Y + sqlBoxIndexer);
             sqlTxt.Height = txtBody.Height;
             sqlTxt.Width = txtBody.Width;
-
             sqlTxt.DoubleClick += new EventHandler(ShowSQLForm);
             return sqlTxt;
-        }
-
-    
+        }    
 
         private TextBox createNameBox()
         {
@@ -243,7 +245,7 @@ namespace EmailSqlResults
             return qryName;
         }
 
-        private FlowLayoutPanel CreatePanel()
+        private FlowLayoutPanel createPanel()
         {
             FlowLayoutPanel panelRbs = new FlowLayoutPanel();
             panelRbs.Name = "panelRbs" + qryIndex;
@@ -262,28 +264,36 @@ namespace EmailSqlResults
         private RadioButton Rb(RbType rbt)
         {
             RadioButton rb = new RadioButton();
-            rb.Name = "rb" + rbt.ToString() + qryIndex;
+            rb.Name = "rb" + rbt.ToString() + "_" + qryIndex;
             rb.Text = rbt.ToString();
-            rb.Margin = new Padding(0,0,0,0);
-            Font f = new Font("SansSerif", 7f);            
-            rb.Font = f;
+            rb.Margin = new Padding(0,0,0,0);            
+            rb.Click += new EventHandler(ChangeLabel);
             return rb;            
         }
+        private Label createLabel()
+        {
+            Label lb = new Label();
+            lb.Location = new Point(txtBody.Location.X + sqlBoxIncrementer, txtBody.Location.Y + sqlBoxIndexer - 15);  
+            lb.Name = "lbl" + "_" + qryIndex;
+            lb.Margin = new Padding(0, 0, 0, 0);
+            return lb;            
+        }
+
         private void AddQuery()
         {
             lblStatus.ForeColor = Color.Black;
             this.Height += sqlBoxIncrementer;
             TextBox sqlTxt = createSQLBox();
             TextBox sqlName = createNameBox();
-            Panel RbPanel = CreatePanel();
+            Panel rbPanel = createPanel();
+            Label qryTypLbl = createLabel();
             this.Controls.Add(sqlName);
             this.Controls.Add(sqlTxt);
-            this.Controls.Add(RbPanel);
+            this.Controls.Add(rbPanel);
+            this.Controls.Add(qryTypLbl);
             qryIndex++;
             sqlBoxIndexer += sqlBoxIncrementer;
-        }
-
-       
+        }       
 
         private void PrepareToExecute()
         {   
@@ -334,6 +344,7 @@ namespace EmailSqlResults
             }
         }
        
+
         private void Execute(bool ToBeEmailed)
         {
             //runs the process to execute queries and send results
@@ -355,7 +366,7 @@ namespace EmailSqlResults
                 var sqlData = new RunQuery(sqlString, qryName).sqlData;
                 if (sqlData.Rows.Count > 0)
                 {
-                    lblStatus.Text = "Sending Data";
+                    //add handler for different result types here:
                     var excelPush = new ExcelPush(sqlData, txtFilePath.Text + qryName);
                 }
                 else if (sqlData.Rows.Count <= 0)
@@ -366,6 +377,7 @@ namespace EmailSqlResults
             }
             if (ToBeEmailed) //if the email is needs to be emailed run the rest of the code
             {
+
                 var EmlObj = new EmailObject() { To = txtTo.Text, Body = txtBody.Text, CC = txtCC.Text, Subject = txtSubject.Text };
                 var GenerateEmail = new GenerateEmail(EmlObj, qryNames, txtFilePath.Text);
                 if (ErrorHandler.AllIssues != "")
@@ -414,12 +426,10 @@ namespace EmailSqlResults
                 string vTag = "<value>";
                 string vTag_end = "</value>";
                 var dict = new Dictionary<string, string>();
-               
                 while (doc.Length > 0)
 	            {
                     if (doc.Search(iTag) > -1)
                     {
-
                         //getting values in the item tag
                         int key_startIndex = doc.Search(iTag) + iTag.Length;
                         int key_endIndex = doc.Search(iTag_end) - key_startIndex;
@@ -463,13 +473,7 @@ namespace EmailSqlResults
             }
         }
         #endregion
-
-
     }
-
-    public class DoubleClickEventArgs : EventArgs
-    {
-        public string DoubleClicked { get; set; }
-    }
+   
 
 }

@@ -3,21 +3,28 @@
   <Class Name="EmailSqlResults.ErrorHandler">
     <Position X="7.75" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAIAAAAACAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
       <FileName>ErrorHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmailSqlResults.ExcelPush">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAQAAQAAIAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAIAAAAA=</HashCode>
       <FileName>ExcelPush.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmailSqlResults.Form1">
     <Position X="2.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="EmailSqlResults.Form1.RbType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Form1.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>CBAAAAAJACAAABAAAACAAhACAAgmEACgAAQAQAAAAAA=</HashCode>
+      <HashCode>CBEACACpASAIABQh5JGhRlACKAg2FAGhAA80SAIICgA=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -36,7 +43,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EmailSqlResults.CollectionUtils">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+    <Position X="0.5" Y="1.75" Width="1.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Utils.cs</FileName>
