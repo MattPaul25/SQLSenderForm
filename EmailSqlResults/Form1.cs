@@ -15,7 +15,7 @@ namespace EmailSqlResults
     {
         enum RbType
         {
-            Excel, CSV, Text
+            Excel, CSV, Text, Command
         }
 
         #region Attributes
@@ -249,15 +249,16 @@ namespace EmailSqlResults
         {
             FlowLayoutPanel panelRbs = new FlowLayoutPanel();
             panelRbs.Name = "panelRbs" + qryIndex;
-            panelRbs.Location = new Point(txtBody.Location.X - 90, txtBody.Location.Y + sqlBoxIndexer);
-            int boxSize = 80;
+            panelRbs.Location = new Point(txtBody.Location.X - 100, txtBody.Location.Y + sqlBoxIndexer + 10);
+            int boxSize = 100;
             panelRbs.Height = boxSize;
             panelRbs.Width = boxSize;
             panelRbs.BringToFront();
             var rb1 = Rb(RbType.Excel);
             var rb2 = Rb(RbType.CSV);
             var rb3 = Rb(RbType.Text);
-            panelRbs.Controls.AddRange(new Control[] {rb1, rb2, rb3});
+            var rb4 = Rb(RbType.Command);
+            panelRbs.Controls.AddRange(new Control[] { rb1, rb2, rb3, rb4 });
             return panelRbs;
         }
        
