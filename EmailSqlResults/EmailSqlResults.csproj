@@ -75,7 +75,7 @@
   <ItemGroup>
     <Compile Include="ConnectionHandler.cs" />
     <Compile Include="ErrorHandler.cs" />
-    <Compile Include="ExcelPush.cs" />
+    <Compile Include="OutputQuery.cs" />
     <Compile Include="GenerateEmail.cs" />
     <Compile Include="LogForm.cs">
       <SubType>Form</SubType>

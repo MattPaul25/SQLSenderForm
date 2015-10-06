@@ -15,7 +15,7 @@ namespace EmailSqlResults
     {
         enum RbType
         {
-            Excel, CSV, Text, Command
+            Excel, CSV, Command
         }
 
         #region Attributes
@@ -216,7 +216,7 @@ namespace EmailSqlResults
                     if (lblQryIndex == rbQryIndex)
                         c.Text = rb.Text;   
                 }
-            }
+            }           
         }
         #endregion
 
@@ -232,7 +232,6 @@ namespace EmailSqlResults
             sqlTxt.DoubleClick += new EventHandler(ShowSQLForm);
             return sqlTxt;
         }    
-
         private TextBox createNameBox()
         {
             TextBox qryName = new TextBox();
@@ -244,7 +243,6 @@ namespace EmailSqlResults
             qryName.Location = new Point(txtBody.Location.X, txtBody.Location.Y + sqlBoxIndexer - qryName.Height);            
             return qryName;
         }
-
         private FlowLayoutPanel createPanel()
         {
             FlowLayoutPanel panelRbs = new FlowLayoutPanel();
@@ -256,12 +254,10 @@ namespace EmailSqlResults
             panelRbs.BringToFront();
             var rb1 = Rb(RbType.Excel);
             var rb2 = Rb(RbType.CSV);
-            var rb3 = Rb(RbType.Text);
-            var rb4 = Rb(RbType.Command);
-            panelRbs.Controls.AddRange(new Control[] { rb1, rb2, rb3, rb4 });
+            var rb3 = Rb(RbType.Command);
+            panelRbs.Controls.AddRange(new Control[] { rb1, rb2, rb3 });
             return panelRbs;
-        }
-       
+        }       
         private RadioButton Rb(RbType rbt)
         {
             RadioButton rb = new RadioButton();
@@ -274,12 +270,12 @@ namespace EmailSqlResults
         private Label createLabel()
         {
             Label lb = new Label();
-            lb.Location = new Point(txtBody.Location.X + sqlBoxIncrementer, txtBody.Location.Y + sqlBoxIndexer - 15);  
+            lb.Location = new Point(txtBody.Location.X + sqlBoxIncrementer, txtBody.Location.Y + sqlBoxIndexer - 15);
+            lb.Width = 50;
             lb.Name = "lbl" + "_" + qryIndex;
             lb.Margin = new Padding(0, 0, 0, 0);
             return lb;            
         }
-
         private void AddQuery()
         {
             lblStatus.ForeColor = Color.Black;
@@ -295,7 +291,6 @@ namespace EmailSqlResults
             qryIndex++;
             sqlBoxIndexer += sqlBoxIncrementer;
         }       
-
         private void PrepareToExecute()
         {   
             //running checks
@@ -343,9 +338,7 @@ namespace EmailSqlResults
                 ErrorHandler.Handle(ex);
                 MessageBox.Show(ex.Message);
             }
-        }
-       
-
+        }       
         private void Execute(bool ToBeEmailed)
         {
             //runs the process to execute queries and send results
@@ -357,18 +350,35 @@ namespace EmailSqlResults
             var findSql = new FindSQL(this);
             var qryNames = findSql.QryNames;
             var sqlStrings = findSql.SqlStatements;
+            var outputTypes = findSql.OutputTypes;
+
             for (int i = 0; i < qryNames.Count; i++)
             {
                 string qryName = qryNames[i];
                 string sqlString = sqlStrings[i];
+                string outputType = outputTypes[i];
                 lblStatus.Text = "Running Query..";
                 lblStatus.ForeColor = Color.IndianRed; 
                 Update();
                 var sqlData = new RunQuery(sqlString, qryName).sqlData;
                 if (sqlData.Rows.Count > 0)
                 {
-                    //add handler for different result types here:
-                    var excelPush = new ExcelPush(sqlData, txtFilePath.Text + qryName);
+                    var push = new PushData(sqlData, txtFilePath.Text + qryName);
+                    switch (outputType)
+                    {
+                        case "Excel":
+                            push.WriteToExcel();
+                            break;
+                        case "CSV":
+                            push.WriteToCsv("|");
+                            break;                        
+                        case "Command":
+                            break;
+                        default:
+                            push.WriteToExcel();
+                            break;
+                    }
+                    
                 }
                 else if (sqlData.Rows.Count <= 0)
                 {
@@ -400,7 +410,6 @@ namespace EmailSqlResults
             lblStatus.ForeColor = Color.Black; 
             Update();
         }
-
         private void FormData_Write()
         {
             using (StreamWriter sw = new StreamWriter(FormData, false))
@@ -415,7 +424,6 @@ namespace EmailSqlResults
                 }
             }
         }
-
         private void FormData_Read()
         {
             //reads stire data and pushes it to form
@@ -452,7 +460,6 @@ namespace EmailSqlResults
                 readDictionary(dict);
             }
         }
-
         private void readDictionary(Dictionary<string, string> dict)
         {
             //reads a dictionary and pushes values to form

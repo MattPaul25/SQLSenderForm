@@ -7,11 +7,11 @@
       <FileName>ErrorHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EmailSqlResults.ExcelPush">
+  <Class Name="EmailSqlResults.PushData">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAIAAAAA=</HashCode>
-      <FileName>ExcelPush.cs</FileName>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAQAAAAAIAAAAA=</HashCode>
+      <FileName>OutputQuery.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EmailSqlResults.Form1">
@@ -24,7 +24,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>CBEACACpASAIABQh5JGhRlACKAg2FAGhAA80SAIICgA=</HashCode>
+      <HashCode>CBEACACpASAIABQh5JChVlASKAgmFAGhAA80SAIICgA=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
