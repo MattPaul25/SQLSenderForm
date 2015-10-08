@@ -1,0 +1,101 @@
+Date|Researcher|Team|EntityID|Change_Type|Table|Field|ID|From|To
+10/5/2015 12:53:29 PM|Bulk-rodnie.tauro@dowjone|TBD|603754|Input|ActivityLog|ControlNo|1860787||1860787
+10/5/2015 12:53:29 PM|Bulk-rodnie.tauro@dowjone|TBD|603754|Input|ActivityLog|EntityName|1860787||VisaNow Inc.
+10/5/2015 12:53:29 PM|Bulk-rodnie.tauro@dowjone|TBD|603754|Input|ActivityLog|Activity|1860787||ClRndPh
+10/5/2015 12:53:29 PM|Bulk-rodnie.tauro@dowjone|TBD|603754|Input|ActivityLog|Remarks|1860787|| // no round related news so far , investor = Garage Technology Ventures, 2/15/2012 jz // Per formD 2014-10-08 added later rd SUD 16.1 out of 22.1M, linked undiscl vc; news=n NK 10/10/2014 // PVAL:  40.85 // Descry: Calculated based on round history
+10/5/2015 12:53:29 PM|Bulk-rodnie.tauro@dowjone|TBD|603754|Input|ActivityLog|DeptAssigned|1860787||VC
+10/5/2015 12:53:29 PM|Bulk-rodnie.tauro@dowjone|TBD|603754|Input|ActivityLog|UserAssigned|1860787||ZB
+10/5/2015 12:53:29 PM|Bulk-rodnie.tauro@dowjone|TBD|603754|Input|ActivityLog|Status|1860787||O
+10/5/2015 12:53:29 PM|Bulk-rodnie.tauro@dowjone|TBD|603754|Input|ActivityLog|IsDeleted|1860787||False
+10/5/2015 4:18:17 PM|Toivo Rehemets|Portfolio|62899|Edit|ActivityLog|Remarks|1834207|FL4q14MOD. Updated title for Karleski. Survey requested that D. Jones, W. Steenrod, R. Vance, R. Ziegler, & J. Willmoth be formered. All of the execs are listed on the firm website. I also spot checked linkedin for a few execs and they are current there also. Didnt former execs for now. (TR 1/6/15)|FL4q14MOD. Updated title for Karleski. Survey requested that D. Jones, W. Steenrod, R. Vance, R. Ziegler, & J. Willmoth be formered. All of the execs are listed on the firm website. I also spot checked linkedin for a few execs and they are current there also. Didnt former execs for now. (TR 1/6/15)/// FL3q15MOD updated AUM per svy. (TR 9/5/15)
+10/5/2015 12:33:37 PM|Angelo Iacovella|Portfolio|66525|Input|ActivityLog|ControlNo|1860781||1860781
+10/5/2015 12:33:37 PM|Angelo Iacovella|Portfolio|66525|Input|ActivityLog|EntityName|1860781||Mercury Fund
+10/5/2015 12:33:37 PM|Angelo Iacovella|Portfolio|66525|Input|ActivityLog|Activity|1860781||SURVEYUPD
+10/5/2015 12:33:37 PM|Angelo Iacovella|Portfolio|66525|Input|ActivityLog|Remarks|1860781||FL3Q15 changed contact as requested and entered a;; HP deals 10/05/15 AI
+10/5/2015 12:33:37 PM|Angelo Iacovella|Portfolio|66525|Input|ActivityLog|DeptAssigned|1860781||RS
+10/5/2015 12:33:37 PM|Angelo Iacovella|Portfolio|66525|Input|ActivityLog|UserAssigned|1860781||AI
+10/5/2015 12:33:37 PM|Angelo Iacovella|Portfolio|66525|Input|ActivityLog|PerformedBy|1860781||AI
+10/5/2015 12:33:37 PM|Angelo Iacovella|Portfolio|66525|Input|ActivityLog|Priority|1860781||M
+10/5/2015 12:33:37 PM|Angelo Iacovella|Portfolio|66525|Input|ActivityLog|Status|1860781||C
+10/5/2015 12:33:37 PM|Angelo Iacovella|Portfolio|66525|Input|ActivityLog|IsDeleted|1860781||False
+10/5/2015 5:50:03 AM|Matthieu Cachau|Primary|359486|Input|ActivityLog|ControlNo|1860751||1860751
+10/5/2015 5:50:03 AM|Matthieu Cachau|Primary|359486|Input|ActivityLog|EntityName|1860751||Mazarine Groupe SAS
+10/5/2015 5:50:03 AM|Matthieu Cachau|Primary|359486|Input|ActivityLog|Activity|1860751||NEWSUPD
+10/5/2015 5:50:03 AM|Matthieu Cachau|Primary|359486|Input|ActivityLog|Remarks|1860751||As per les echos, adding debt round, amount EUR 30M, adding Senior debts banks, news=yes CM 10/5/2015
+10/5/2015 5:50:03 AM|Matthieu Cachau|Primary|359486|Input|ActivityLog|DeptAssigned|1860751||DEBT
+10/5/2015 5:50:03 AM|Matthieu Cachau|Primary|359486|Input|ActivityLog|UserAssigned|1860751||CM
+10/5/2015 5:50:03 AM|Matthieu Cachau|Primary|359486|Input|ActivityLog|PerformedBy|1860751||CM
+10/5/2015 5:50:03 AM|Matthieu Cachau|Primary|359486|Input|ActivityLog|Priority|1860751||M
+10/5/2015 5:50:03 AM|Matthieu Cachau|Primary|359486|Input|ActivityLog|Status|1860751||C
+10/5/2015 5:50:03 AM|Matthieu Cachau|Primary|359486|Input|ActivityLog|IsDeleted|1860751||False
+10/5/2015 2:33:59 PM|Irene Yao|Secondary|603673|Input|ActivityLog|ControlNo|1860805||1860805
+10/5/2015 2:33:59 PM|Irene Yao|Secondary|603673|Input|ActivityLog|EntityName|1860805||Eatem Foods Co.
+10/5/2015 2:33:59 PM|Irene Yao|Secondary|603673|Input|ActivityLog|Activity|1860805||NEWSUPD
+10/5/2015 2:33:59 PM|Irene Yao|Secondary|603673|Input|ActivityLog|DeptAssigned|1860805||ACQ
+10/5/2015 2:33:59 PM|Irene Yao|Secondary|603673|Input|ActivityLog|UserAssigned|1860805||IY
+10/5/2015 2:33:59 PM|Irene Yao|Secondary|603673|Input|ActivityLog|Priority|1860805||M
+10/5/2015 2:33:59 PM|Irene Yao|Secondary|603673|Input|ActivityLog|Status|1860805||C
+10/5/2015 2:33:59 PM|Irene Yao|Secondary|603673|Input|ActivityLog|SiteId|1860805||631729
+10/5/2015 2:33:59 PM|Irene Yao|Secondary|603673|Input|ActivityLog|IsDeleted|1860805||False
+10/5/2015 9:52:50 AM|Nina Kuzmina|Secondary|667080|Input|ActivityLog|ControlNo|1860765||1860765
+10/5/2015 9:52:50 AM|Nina Kuzmina|Secondary|667080|Input|ActivityLog|EntityName|1860765||Mercaux LCI
+10/5/2015 9:52:50 AM|Nina Kuzmina|Secondary|667080|Input|ActivityLog|Activity|1860765||NEWSUPD
+10/5/2015 9:52:50 AM|Nina Kuzmina|Secondary|667080|Input|ActivityLog|Remarks|1860765||Per Marketline 10/2/2015 added new co: 1st rd fr Maxfield Capital, Sun Capital Partners, indi inv; news=y NK 10/5/2015
+10/5/2015 9:52:50 AM|Nina Kuzmina|Secondary|667080|Input|ActivityLog|DeptAssigned|1860765||VC
+10/5/2015 9:52:50 AM|Nina Kuzmina|Secondary|667080|Input|ActivityLog|UserAssigned|1860765||NK
+10/5/2015 9:52:50 AM|Nina Kuzmina|Secondary|667080|Input|ActivityLog|Priority|1860765||M
+10/5/2015 9:52:50 AM|Nina Kuzmina|Secondary|667080|Input|ActivityLog|Status|1860765||C
+10/5/2015 9:52:50 AM|Nina Kuzmina|Secondary|667080|Input|ActivityLog|EditBy|1860765||nina.kuzmina@dowjones.com
+10/5/2015 9:52:50 AM|Nina Kuzmina|Secondary|667080|Input|ActivityLog|IsDeleted|1860765||False
+10/5/2015 1:21:44 PM|Irene Yao|Secondary|667087|Input|ActivityLog|ControlNo|1860797||1860797
+10/5/2015 1:21:44 PM|Irene Yao|Secondary|667087|Input|ActivityLog|EntityName|1860797||Genminix Informatics Co. Ltd.
+10/5/2015 1:21:44 PM|Irene Yao|Secondary|667087|Input|ActivityLog|Activity|1860797||NewCoRe
+10/5/2015 1:21:44 PM|Irene Yao|Secondary|667087|Input|ActivityLog|DeptAssigned|1860797||VC
+10/5/2015 1:21:44 PM|Irene Yao|Secondary|667087|Input|ActivityLog|UserAssigned|1860797||IY
+10/1/2015 5:46:32 PM|Zainab Bisiolu|Primary|623978|Edit|ActivityLog|Remarks|1852244| // ph# is ZEROTOO510'S GI 9/10/2012//per formD, ph#: 678-381-6532 // PVAL: 42198  // Descry: Known PVAL|// ph# is ZEROTOO510'S GI 9/10/2012//per formD, ph#: 678-381-6532 // PVAL: 42198  //update after hp
+10/1/2015 5:46:32 PM|Zainab Bisiolu|Primary|623978|Edit|ActivityLog|EditBy|1852244||zainab.bisiolu@dowjones.c
+10/1/2015 5:37:27 PM|Zainab Bisiolu|Primary|625766|Edit|ActivityLog|Remarks|1855651| // formD 2014-03-19, sold $140,000 of $1M, eq, linked undiscl VC, news=N. CSR 5/20/14/// fsn up'd per FL4q14 Rand Cap pdf file CS 1/9/15///formD ph#: 716-253-1484 // PVAL:   // Descry: Not PVal Round Type|// formD 2014-03-19, sold $140,000 of $1M, eq, linked undiscl VC, news=N. CSR 5/20/14/// fsn up'd per FL4q14 Rand Cap pdf file CS 1/9/15///formD ph#: 716-253-1484 // PVAL:   // webup after hp 
+10/1/2015 5:37:27 PM|Zainab Bisiolu|Primary|625766|Edit|ActivityLog|EditBy|1855651||zainab.bisiolu@dowjones.c
+10/1/2015 7:04:51 PM|Zainab Bisiolu|Primary|656569|Edit|ActivityLog|Remarks|1855688|BIG ROUND: US 10M // as per VCdelta update, 09/25/14 AI//per VCDelta/their portfolio, linked Deep Fork Capital, plz cofirm when it invested in co. 10/27/14 ZJ // PVAL: 42230  // Descry: Known PVAL|BIG ROUND: US 10M // as per VCdelta update, 09/25/14 AI//per VCDelta/their portfolio, linked Deep Fork Capital, plz cofirm when it invested in co. 10/27/14 ZJ // PVAL: 42230  // webup
+10/1/2015 7:04:51 PM|Zainab Bisiolu|Primary|656569|Edit|ActivityLog|EditBy|1855688||zainab.bisiolu@dowjones.c
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|110429|Input|ActivityLog|ControlNo|1860567||1860567
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|110429|Input|ActivityLog|EntityName|1860567||Infoaxe Inc.
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|110429|Input|ActivityLog|Activity|1860567||ClRndPh
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|110429|Input|ActivityLog|Remarks|1860567||// Per formD 9/28/2015 added 1st rd USD 0.11 out of 5.46M, linked undiscl vc; news=n NK 9/30/2015 // PVAL: 42277 12.93 // Descry: United States_First Round_Consumer Information Services_Consumer Services // LM General Line: 1p, tried to call the company at (650)796-6388 [MIE 10/1/2015] // SE Vijay Krishnan: 1p, sent direct em vijay@infoaxe.com and cc'd Jonathan Siddharth - jonathan@infoaxe.com [MIE 10/1/2015] // 
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|110429|Input|ActivityLog|DeptAssigned|1860567||VC
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|110429|Input|ActivityLog|UserAssigned|1860567||MIE
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|110429|Input|ActivityLog|Priority|1860567||M
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|110429|Input|ActivityLog|Status|1860567||O
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|110429|Input|ActivityLog|EditBy|1860567||mine.ekim@dowjones.com
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|110429|Input|ActivityLog|SiteId|1860567||64914
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|110429|Input|ActivityLog|IsDeleted|1860567||False
+10/1/2015 12:37:59 PM|Bulk-rodnie.tauro@dowjone|TBD|182473|Input|ActivityLog|ControlNo|1860561||1860561
+10/1/2015 12:37:59 PM|Bulk-rodnie.tauro@dowjone|TBD|182473|Input|ActivityLog|EntityName|1860561||Embera NeuroTherapeutics Inc.
+10/1/2015 12:37:59 PM|Bulk-rodnie.tauro@dowjone|TBD|182473|Input|ActivityLog|Activity|1860561||ClRndPh
+10/1/2015 12:37:59 PM|Bulk-rodnie.tauro@dowjone|TBD|182473|Input|ActivityLog|Remarks|1860561|| // per formDA 9/29/2015 added 2nd tranche USD 2.16M to a new total 4.51 out of 6.64M, pls check in Primary if related to OES rd in March 2015 NK 9/30/2015 // PVAL: 42277  // Descry: Not PVal Round Type
+10/1/2015 12:37:59 PM|Bulk-rodnie.tauro@dowjone|TBD|182473|Input|ActivityLog|DeptAssigned|1860561||VC
+10/1/2015 12:37:59 PM|Bulk-rodnie.tauro@dowjone|TBD|182473|Input|ActivityLog|UserAssigned|1860561||JS
+10/1/2015 12:37:59 PM|Bulk-rodnie.tauro@dowjone|TBD|182473|Input|ActivityLog|Status|1860561||O
+10/1/2015 12:37:59 PM|Bulk-rodnie.tauro@dowjone|TBD|182473|Input|ActivityLog|IsDeleted|1860561||False
+10/1/2015 12:38:04 PM|Bulk-rodnie.tauro@dowjone|TBD|616878|Input|ActivityLog|ControlNo|1860583||1860583
+10/1/2015 12:38:04 PM|Bulk-rodnie.tauro@dowjone|TBD|616878|Input|ActivityLog|EntityName|1860583||Civitas Learning Inc.
+10/1/2015 12:38:04 PM|Bulk-rodnie.tauro@dowjone|TBD|616878|Input|ActivityLog|Activity|1860583||ClRndPh
+10/1/2015 12:38:04 PM|Bulk-rodnie.tauro@dowjone|TBD|616878|Input|ActivityLog|Remarks|1860583||BIG ROUND Confirmed VW
+10/1/2015 12:38:04 PM|Bulk-rodnie.tauro@dowjone|TBD|616878|Input|ActivityLog|DeptAssigned|1860583||VC
+10/1/2015 12:38:04 PM|Bulk-rodnie.tauro@dowjone|TBD|616878|Input|ActivityLog|UserAssigned|1860583||ZB
+10/1/2015 12:38:04 PM|Bulk-rodnie.tauro@dowjone|TBD|616878|Input|ActivityLog|Status|1860583||O
+10/1/2015 12:38:04 PM|Bulk-rodnie.tauro@dowjone|TBD|616878|Input|ActivityLog|EditBy|1860583||rodnie.tauro@dowjones.com
+10/1/2015 12:38:04 PM|Bulk-rodnie.tauro@dowjone|TBD|616878|Input|ActivityLog|IsDeleted|1860583||False
+10/1/2015 5:59:18 PM|Zainab Bisiolu|Primary|114404|Edit|ActivityLog|Remarks|1855664|BIG ROUND: US 200M // emply# per linkedin. ASH 2/20/15// per formD dated 2/19/15, co raised on 2/4/15 USD 251,460 of ttl USD 251,460 (eqt), linked undclsd vc, news=n. Pls check if this was a follow-on tranche of serE. ASH 2/20/15// // PVAL:   // Descry: Known PVAL|BIG ROUND: US 200M // emply# per linkedin. ASH 2/20/15// per formD dated 2/19/15, co raised on 2/4/15 USD 251,460 of ttl USD 251,460 (eqt), linked undclsd vc, news=n. Pls check if this was a follow-on tranche of serE. ASH 2/20/15// // PVAL:   // webup after hp 
+10/1/2015 6:48:45 PM|Zainab Bisiolu|Primary|624267|Edit|ActivityLog|Remarks|1853702|BIG ROUND: US 13.5M //  // PVAL: 42206 46.8 // Descry: United States_Later Stage_Healthcare Services_Healthcare|BIG ROUND: US 13.5M //  // PVAL: 42206 46.8 // webup 
+10/1/2015 6:48:45 PM|Zainab Bisiolu|Primary|624267|Edit|ActivityLog|EditBy|1853702||zainab.bisiolu@dowjones.c
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|654284|Input|ActivityLog|ControlNo|1860565||1860565
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|654284|Input|ActivityLog|EntityName|1860565||Blinkfire Labs Inc.
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|654284|Input|ActivityLog|Activity|1860565||ClRndPh
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|654284|Input|ActivityLog|Remarks|1860565|| // co added per VC Delta updated, need more contact info , the investor Foundry Group Ph:(303)642-4050 7/15/2014 jz // PVAL:   // Descry: Not PVal Round Type
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|654284|Input|ActivityLog|DeptAssigned|1860565||VC
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|654284|Input|ActivityLog|UserAssigned|1860565||ZB
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|654284|Input|ActivityLog|Status|1860565||O
+10/1/2015 12:38:00 PM|Bulk-rodnie.tauro@dowjone|TBD|654284|Input|ActivityLog|IsDeleted|1860565||False
+10/1/2015 12:38:03 PM|Bulk-rodnie.tauro@dowjone|TBD|667001|Input|ActivityLog|ControlNo|1860580||1860580
+10/1/2015 12:38:03 PM|Bulk-rodnie.tauro@dowjone|TBD|667001|Input|ActivityLog|EntityName|1860580||Westbourne Inc.

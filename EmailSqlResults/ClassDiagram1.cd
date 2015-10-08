@@ -10,7 +10,7 @@
   <Class Name="EmailSqlResults.PushData">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAQAAAAAIAAAAA=</HashCode>
+      <HashCode>ABAAAAAEAAAAAAAAAAAAAAACAAAAAAAQAAAAAIAAAAA=</HashCode>
       <FileName>OutputQuery.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -24,7 +24,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>CBEACACpASAIABQh5JChVlASKAgmFAGhAA80SAIICgA=</HashCode>
+      <HashCode>CBEACAKpISCIALQh5JShBlASqAimFIGiAQ81SAIICQA=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>

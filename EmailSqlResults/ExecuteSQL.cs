@@ -28,17 +28,16 @@ namespace EmailSqlResults
             //finds the added cntrls with a name of leader string sqlbox
             //these controls refer to inputs that contain 
             foreach (Control cntrl1 in form.Controls)
-            {
-                string cntrl1Name = "sqlbox";
-                if (cntrl1.Name.Length >= cntrl1Name.Length + 1)
+            {              
+                if (cntrl1.Name.Length >= form.txtSql.Length)
                 {
-                    bool isControlType = cntrl1.Name.Substring(0, cntrl1Name.Length) == cntrl1Name;
-                    if (isControlType)
-                    {
-                        SqlStatements.Add(cntrl1.Text);
-                        findQryNameControl(cntrl1, "qryName", QryNames);
-                        findQryNameControl(cntrl1, "lbl_", OutputTypes);
-                    }
+                    bool isControlType = cntrl1.Name.Substring(0, form.txtSql.Length) == form.txtSql;
+                        if (isControlType)
+                        {
+                            SqlStatements.Add(cntrl1.Text);
+                            findQryNameControl(cntrl1, form.txtQueryName, QryNames);
+                            findQryNameControl(cntrl1, form.lblOutput, OutputTypes);
+                        }
                 }
             }
         }

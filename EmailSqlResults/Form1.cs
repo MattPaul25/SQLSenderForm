@@ -13,32 +13,55 @@ namespace EmailSqlResults
 {
     public partial class Form1 : Form
     {
-        enum RbType
-        {
-            Excel, CSV, Command
-        }
+       
 
         #region Attributes
+        public string btnDel;
+        public string lblOutput;
+        public string txtQueryName;
+        public string txtSql;
+        public string iTag;
+        public string iTag_end;
+        public string vTag;
+        public string vTag_end;
+        public string panelRbs;
         static int sqlBoxIndexer;
         static int qryIndex;        
         string FormData;
         int sqlBoxIncrementer;
         #endregion
 
-        #region Constructor
+        #region Constructor | Attribute Assignments | Enums
         public Form1()
         {
-            FormData = "FormData.txt";
-            qryIndex = 0;
-            sqlBoxIncrementer = 150;
-            sqlBoxIndexer = sqlBoxIncrementer;
-            InitializeComponent();
-            lblStatus.Text = "Dormant";
+            assignAttributes();
+            InitializeComponent();                       
             Connection.ConnectionTested += ConnectionTestEventHandler;
             if (File.Exists(FormData))
             {
-                FormData_Read();
+                FormDataRead();
             }
+            lblStatus.Text = "Dormant";
+        }
+        enum RbType
+        {
+            Excel, CSV, Command
+        }
+        private void assignAttributes()
+        {
+            FormData = "FormData.txt";
+            panelRbs = "panelRbs_";
+            btnDel = "btnDel_";
+            lblOutput = "lblOutput_";
+            txtQueryName = "txtQueryName_";
+            txtSql = "txtSql_";
+            iTag = "<item>";
+            iTag_end = "</item>";
+            vTag = "<value>";
+            vTag_end = "</value>";
+            qryIndex = 0;
+            sqlBoxIncrementer = 150;
+            sqlBoxIndexer = sqlBoxIncrementer;
         }
         #endregion
 
@@ -195,12 +218,12 @@ namespace EmailSqlResults
         {
             PrepareToExecute();           
         }
-        private void ShowSQLForm(object sender, EventArgs e)
+        private void txtSql_DoubleClick(object sender, EventArgs e)
         {
             var senderText = ((TextBox)sender); //down casting the object allows me to access its members
             var sqlview = new Sqlviewer(senderText);  
         }
-        private void ChangeLabel(object sender, EventArgs e)
+        private void rb_Click(object sender, EventArgs e)
         {
             var rb = (RadioButton)sender;
             int rbSpaceIndex = rb.Name.Search("_") + 1;
@@ -209,33 +232,56 @@ namespace EmailSqlResults
             foreach (Control c in this.Controls)
             {
                 var controlType = c.GetType().ToString();
-                if (controlType == "System.Windows.Forms.Label" && c.Name.Substring(0,3) == "lbl")
+                if (c.Name.Length > lblOutput.Length)
                 {
-                    int lblSpaceIndex = c.Name.Search("_") + 1;
-                    string lblQryIndex = c.Name.Substring(lblSpaceIndex, c.Name.Length - lblSpaceIndex);
-                    if (lblQryIndex == rbQryIndex)
-                        c.Text = rb.Text;   
+                    if (controlType == "System.Windows.Forms.Label" && c.Name.Substring(0, lblOutput.Length) == lblOutput)
+                    {
+                        int lblSpaceIndex = c.Name.Search("_") + 1;
+                        string lblQryIndex = c.Name.Substring(lblSpaceIndex, c.Name.Length - lblSpaceIndex);
+                        if (lblQryIndex == rbQryIndex)
+                            c.Text = rb.Text;
+                    }
                 }
             }           
         }
+        private void lblOutput_DoubleClick(object sender, EventArgs e)
+        {
+            MessageBox.Show("Options: \n Excel will output as an excel file \n CSV will output as a pipe delimited csv or text file "
+                            + "\n Command will not output any data but will run against the DB", "Output Types");
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            //fix this method
+            var myButton = (Button)sender;
+            string getIndex = myButton.Name.Substring(myButton.Name.Search("_") + 1);
+            foreach (Control cntrl in this.Controls)
+            {
+                string name = cntrl.Name;
+                string cntrlIndex = name.Substring(name.Search("_") + 1);
+                if (cntrlIndex == getIndex)
+                {
+                    this.Controls.Remove(cntrl);
+                }
+            }
+        }
         #endregion
 
-        #region Methods
+        #region Dynamic Control Methods
         private TextBox createSQLBox()
         {
-            TextBox sqlTxt = new TextBox();
-            sqlTxt.Name = "sqlbox" + qryIndex;
-            sqlTxt.Multiline = true;
-            sqlTxt.Location = new Point(txtBody.Location.X, txtBody.Location.Y + sqlBoxIndexer);
-            sqlTxt.Height = txtBody.Height;
-            sqlTxt.Width = txtBody.Width;
-            sqlTxt.DoubleClick += new EventHandler(ShowSQLForm);
-            return sqlTxt;
+            TextBox txtSqlBox = new TextBox();
+            txtSqlBox.Name = txtSql + qryIndex.ToString();
+            txtSqlBox.Multiline = true;
+            txtSqlBox.Location = new Point(txtBody.Location.X, txtBody.Location.Y + sqlBoxIndexer);
+            txtSqlBox.Height = txtBody.Height;
+            txtSqlBox.Width = txtBody.Width;
+            txtSqlBox.DoubleClick += new EventHandler(txtSql_DoubleClick);
+            return txtSqlBox;
         }    
         private TextBox createNameBox()
         {
             TextBox qryName = new TextBox();
-            qryName.Name = "qryName" + qryIndex;
+            qryName.Name = txtQueryName + qryIndex.ToString();
             qryName.Text = qryName.Name;
             qryName.Multiline = false;
             qryName.Height = 15;
@@ -243,10 +289,30 @@ namespace EmailSqlResults
             qryName.Location = new Point(txtBody.Location.X, txtBody.Location.Y + sqlBoxIndexer - qryName.Height);            
             return qryName;
         }
+        private Button createDeleteButton()
+        {
+            Button btnDelete = new Button();
+            btnDelete.Name = btnDel + qryIndex.ToString();
+            btnDelete.Text = "Delete";
+            btnDelete.Location = new Point(txtBody.Location.X + txtBody.Size.Width - btnDelete.Width, txtBody.Location.Y + sqlBoxIndexer - btnDelete.Height);
+            btnDelete.Click += new EventHandler(btnDelete_Click);
+            return btnDelete;
+        }
+        private Label OutputTypes()
+        {
+            Label lb = new Label();
+            lb.Name = lblOutput + qryIndex.ToString();
+            lb.Text = "Output Types:";
+            lb.Font = new Font("Arial", 10, FontStyle.Bold);
+            lb.Location = new Point(txtBody.Location.X - 100, txtBody.Location.Y + sqlBoxIndexer - 15);
+            lb.Width = 80;         
+            lb.DoubleClick += new EventHandler(lblOutput_DoubleClick);
+            return lb;  
+        }
         private FlowLayoutPanel createPanel()
         {
             FlowLayoutPanel panelRbs = new FlowLayoutPanel();
-            panelRbs.Name = "panelRbs" + qryIndex;
+            panelRbs.Name = panelRbs + qryIndex.ToString();
             panelRbs.Location = new Point(txtBody.Location.X - 100, txtBody.Location.Y + sqlBoxIndexer + 10);
             int boxSize = 100;
             panelRbs.Height = boxSize;
@@ -264,30 +330,21 @@ namespace EmailSqlResults
             rb.Name = "rb" + rbt.ToString() + "_" + qryIndex;
             rb.Text = rbt.ToString();
             rb.Margin = new Padding(0,0,0,0);            
-            rb.Click += new EventHandler(ChangeLabel);
+            rb.Click += new EventHandler(rb_Click);
             return rb;            
         }
-        private Label createLabel()
-        {
-            Label lb = new Label();
-            lb.Location = new Point(txtBody.Location.X + sqlBoxIncrementer, txtBody.Location.Y + sqlBoxIndexer - 15);
-            lb.Width = 50;
-            lb.Name = "lbl" + "_" + qryIndex;
-            lb.Margin = new Padding(0, 0, 0, 0);
-            return lb;            
-        }
+        #endregion
+
+        #region Methods
         private void AddQuery()
         {
             lblStatus.ForeColor = Color.Black;
             this.Height += sqlBoxIncrementer;
-            TextBox sqlTxt = createSQLBox();
-            TextBox sqlName = createNameBox();
-            Panel rbPanel = createPanel();
-            Label qryTypLbl = createLabel();
-            this.Controls.Add(sqlName);
-            this.Controls.Add(sqlTxt);
-            this.Controls.Add(rbPanel);
-            this.Controls.Add(qryTypLbl);
+            this.Controls.Add(createNameBox());
+            this.Controls.Add(createSQLBox());
+            this.Controls.Add(createPanel());
+            this.Controls.Add(OutputTypes());
+            this.Controls.Add(createDeleteButton());
             qryIndex++;
             sqlBoxIndexer += sqlBoxIncrementer;
         }       
@@ -342,24 +399,19 @@ namespace EmailSqlResults
         private void Execute(bool ToBeEmailed)
         {
             //runs the process to execute queries and send results
-            FormData_Write();
-            lblStatus.Text = "Executing.....";
-            lblStatus.ForeColor = Color.DarkBlue; 
-            Update();
+            FormDataWrite();
+            lblStatus.Text = "Executing....."; lblStatus.ForeColor = Color.DarkBlue; Update();
             ErrorHandler.AllIssues = "";
             var findSql = new FindSQL(this);
             var qryNames = findSql.QryNames;
             var sqlStrings = findSql.SqlStatements;
             var outputTypes = findSql.OutputTypes;
-
+            //looping through all found queries
             for (int i = 0; i < qryNames.Count; i++)
             {
                 string qryName = qryNames[i];
                 string sqlString = sqlStrings[i];
                 string outputType = outputTypes[i];
-                lblStatus.Text = "Running Query..";
-                lblStatus.ForeColor = Color.IndianRed; 
-                Update();
                 var sqlData = new RunQuery(sqlString, qryName).sqlData;
                 if (sqlData.Rows.Count > 0)
                 {
@@ -378,7 +430,6 @@ namespace EmailSqlResults
                             push.WriteToExcel();
                             break;
                     }
-                    
                 }
                 else if (sqlData.Rows.Count <= 0)
                 {
@@ -396,7 +447,7 @@ namespace EmailSqlResults
                     lblStatus.ForeColor = Color.Red;
                     lblStatus.Text = "Sending Errors!"; 
                     Update();
-                    var errMail = new EmailObject()  //Create Email Object;
+                    var errMail = new EmailObject()  //create error email object;
                     {
                         To = txtYourEmail.Text,
                         Subject = "SQL Sender Errors",
@@ -410,7 +461,7 @@ namespace EmailSqlResults
             lblStatus.ForeColor = Color.Black; 
             Update();
         }
-        private void FormData_Write()
+        private void FormDataWrite()
         {
             using (StreamWriter sw = new StreamWriter(FormData, false))
             {
@@ -419,21 +470,17 @@ namespace EmailSqlResults
                     var controlType = c.GetType().ToString();
                     if (controlType == "System.Windows.Forms.TextBox")
                     {
-                        sw.WriteLine("<item>" + c.Name + "</item><value>" + c.Text + "</value>");                                                
+                        sw.WriteLine(iTag + c.Name + iTag_end + vTag + c.Text + vTag_end);                                                
                     }
                 }
             }
         }
-        private void FormData_Read()
+        private void FormDataRead()
         {
             //reads stire data and pushes it to form
             using (StreamReader sr = new StreamReader(FormData))
             {
                 string doc = sr.ReadToEnd();
-                string iTag = "<item>";
-                string iTag_end = "</item>";
-                string vTag = "<value>";
-                string vTag_end = "</value>";
                 var dict = new Dictionary<string, string>();
                 while (doc.Length > 0)
 	            {
@@ -465,10 +512,13 @@ namespace EmailSqlResults
             //reads a dictionary and pushes values to form
             foreach (var key in dict.Keys)
             {
-                string qryCheck = "qry";
-                if (key.Substring(0, qryCheck.Length) == qryCheck)
+                //check to see if the control type in dictionary requires the making of a new query
+                if (key.Length >  txtSql.Length)
                 {
-                    AddQuery();
+                    if (key.Substring(0, txtSql.Length) == txtSql)
+                    {
+                        AddQuery();
+                    }
                 }
                 foreach (Control c in this.Controls)
                 {

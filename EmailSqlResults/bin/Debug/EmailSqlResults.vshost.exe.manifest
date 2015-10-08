@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EmailSqlResults.exe" size="1780704">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EmailSqlResults.exe" size="1781728">
       <assemblyIdentity name="EmailSqlResults" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Na6QGVlx/Kvr2Bo7nJr3dE5GJ8+WUN7SKnOLOzN4qWg=</dsig:DigestValue>
+        <dsig:DigestValue>sFKUeg4/VRuIFcNS/7Wk8IsWmj5OFPdSosRxkWIUpew=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
