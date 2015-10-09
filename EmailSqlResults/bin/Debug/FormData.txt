@@ -1,9 +1,32 @@
 <item>txtYourEmail</item><value>matt.farguson@gmail.com</value>
-<item>txtFilePath</item><value>C:\Users\fargusonm\Documents\Visual Studio 2013\Projects\EmailSqlResults/</value>
+<item>txtFilePath</item><value>C:\Users\fargusonm\Documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults/</value>
 <item>txtCC</item><value>matt.farguson@gmail.com</value>
-<item>txtBody</item><value>bod</value>
+<item>txtBody</item><value>body</value>
 <item>txtTo</item><value>matt.farguson@gmail.com</value>
-<item>txtSubject</item><value>test</value>
-<item>txtQueryName_0</item><value>txtQueryName_0</value>
-<item>txtSql_0</item><value>SELECT TOP 100 *
+<item>txtSubject</item><value>sub</value>
+<item>txtQueryName_0</item><value>test1</value>
+<item>txtSql_0</item><value>/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP 10 [Date]
+      ,[Researcher]
+      ,[Team]
+      ,[EntityID]
+      ,[Change_Type]
+      ,[Table]
+      ,[Field]
+      ,[ID]
+      ,[From]
+      ,[To]
+  FROM [DailyOps].[dbo].[DailyLog]</value>
+<item>txtQueryName_1</item><value>test2</value>
+<item>txtSql_1</item><value>/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP 100 [Date]
+      ,[Researcher]
+      ,[Team]
+      ,[EntityID]
+      ,[Change_Type]
+      ,[Table]
+      ,[Field]
+      ,[ID]
+      ,[From]
+      ,[To]
   FROM [DailyOps].[dbo].[DailyLog]</value>

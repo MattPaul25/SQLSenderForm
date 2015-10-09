@@ -13,8 +13,6 @@ namespace EmailSqlResults
 {
     public partial class Form1 : Form
     {
-       
-
         #region Attributes
         public string btnDel;
         public string lblOutput;
@@ -24,9 +22,9 @@ namespace EmailSqlResults
         public string iTag_end;
         public string vTag;
         public string vTag_end;
-        public string panelRbs;
+        public string pnlRbs;
         static int sqlBoxIndexer;
-        static int qryIndex;        
+        static int qryIndex;
         string FormData;
         int sqlBoxIncrementer;
         #endregion
@@ -34,8 +32,13 @@ namespace EmailSqlResults
         #region Constructor | Attribute Assignments | Enums
         public Form1()
         {
+            constructForm();
+        }
+
+        private void constructForm()
+        {
             assignAttributes();
-            InitializeComponent();                       
+            InitializeComponent();
             Connection.ConnectionTested += ConnectionTestEventHandler;
             if (File.Exists(FormData))
             {
@@ -50,7 +53,7 @@ namespace EmailSqlResults
         private void assignAttributes()
         {
             FormData = "FormData.txt";
-            panelRbs = "panelRbs_";
+            pnlRbs = "panelRbs_";
             btnDel = "btnDel_";
             lblOutput = "lblOutput_";
             txtQueryName = "txtQueryName_";
@@ -66,24 +69,24 @@ namespace EmailSqlResults
         #endregion
 
         #region Events
-        private void ConnectionTestEventHandler (EventArgs args)
+        private void ConnectionTestEventHandler(EventArgs args)
         {
             if (Connection.isWorkingConnection)
             {
                 this.Text = "Sql Data Sender: Connection is Working";
                 btnExecute.Enabled = true;
-                btnExecute.BackColor = Color.LightGreen; 
-                lblStatus.Text = "Live Connection"; 
-                lblStatus.ForeColor = Color.DarkGreen; 
+                btnExecute.BackColor = Color.LightGreen;
+                lblStatus.Text = "Live Connection";
+                lblStatus.ForeColor = Color.DarkGreen;
                 Update();
             }
             else
             {
                 this.Text = "Sql Data Sender: No Connection";
                 btnExecute.Enabled = false;
-                btnExecute.BackColor = Color.Transparent; 
-                lblStatus.Text = "No Connection"; 
-                lblStatus.ForeColor = Color.DarkRed; 
+                btnExecute.BackColor = Color.Transparent;
+                lblStatus.Text = "No Connection";
+                lblStatus.ForeColor = Color.DarkRed;
                 Update();
             }
         }
@@ -123,7 +126,7 @@ namespace EmailSqlResults
             this.Visible = true;
             this.WindowState = FormWindowState.Normal;
             notifyIcon.Visible = false;
-        } 
+        }
         private void btnAddQuery_Click(object sender, EventArgs e)
         {
             AddQuery();
@@ -177,7 +180,6 @@ namespace EmailSqlResults
                         string myDay = DateTime.Today.DayOfWeek.ToString();
                         if (item.Checked && item.Name == "ckb" + myDay)
                         {
-                            
                             PrepareToExecute();
                             break;
                         }
@@ -216,19 +218,19 @@ namespace EmailSqlResults
         }
         private void btnExecute_Click(object sender, EventArgs e)
         {
-            PrepareToExecute();           
+            PrepareToExecute();
         }
         private void txtSql_DoubleClick(object sender, EventArgs e)
         {
             var senderText = ((TextBox)sender); //down casting the object allows me to access its members
-            var sqlview = new Sqlviewer(senderText);  
+            var sqlview = new Sqlviewer(senderText);
         }
         private void rb_Click(object sender, EventArgs e)
         {
             var rb = (RadioButton)sender;
             int rbSpaceIndex = rb.Name.Search("_") + 1;
             string rbQryIndex = rb.Name.Substring(rbSpaceIndex, rb.Name.Length - rbSpaceIndex);
-            
+
             foreach (Control c in this.Controls)
             {
                 var controlType = c.GetType().ToString();
@@ -242,7 +244,7 @@ namespace EmailSqlResults
                             c.Text = rb.Text;
                     }
                 }
-            }           
+            }
         }
         private void lblOutput_DoubleClick(object sender, EventArgs e)
         {
@@ -253,14 +255,29 @@ namespace EmailSqlResults
         {
             //fix this method
             var myButton = (Button)sender;
-            string getIndex = myButton.Name.Substring(myButton.Name.Search("_") + 1);
-            foreach (Control cntrl in this.Controls)
+            string index = myButton.Name.Substring(myButton.Name.Search("_") + 1);
+            var delForm = new DeleteSection(this, index);
+            delForm.Show();
+        }
+
+        public void DeleteControls(string getIndex)
+        {
+            var cntrls = this.Controls;
+            var cntrlCount = cntrls.Count;
+            for (int i = 0; i < cntrlCount; i++)
             {
+                var cntrl = cntrls[i];
                 string name = cntrl.Name;
-                string cntrlIndex = name.Substring(name.Search("_") + 1);
-                if (cntrlIndex == getIndex)
+                int start = name.Search("_");
+                if (start > -1)
                 {
-                    this.Controls.Remove(cntrl);
+                    string cntrlIndex = name.Substring(start + 1);
+                    if (cntrlIndex == getIndex)
+                    {
+                        this.Controls.Remove(cntrl);
+                        i--;
+                        cntrlCount--;
+                    }
                 }
             }
         }
@@ -277,7 +294,7 @@ namespace EmailSqlResults
             txtSqlBox.Width = txtBody.Width;
             txtSqlBox.DoubleClick += new EventHandler(txtSql_DoubleClick);
             return txtSqlBox;
-        }    
+        }
         private TextBox createNameBox()
         {
             TextBox qryName = new TextBox();
@@ -286,7 +303,7 @@ namespace EmailSqlResults
             qryName.Multiline = false;
             qryName.Height = 15;
             qryName.Width = 90;
-            qryName.Location = new Point(txtBody.Location.X, txtBody.Location.Y + sqlBoxIndexer - qryName.Height);            
+            qryName.Location = new Point(txtBody.Location.X, txtBody.Location.Y + sqlBoxIndexer - qryName.Height);
             return qryName;
         }
         private Button createDeleteButton()
@@ -305,33 +322,33 @@ namespace EmailSqlResults
             lb.Text = "Output Types:";
             lb.Font = new Font("Arial", 10, FontStyle.Bold);
             lb.Location = new Point(txtBody.Location.X - 100, txtBody.Location.Y + sqlBoxIndexer - 15);
-            lb.Width = 80;         
+            lb.Width = 80;
             lb.DoubleClick += new EventHandler(lblOutput_DoubleClick);
-            return lb;  
+            return lb;
         }
         private FlowLayoutPanel createPanel()
         {
             FlowLayoutPanel panelRbs = new FlowLayoutPanel();
-            panelRbs.Name = panelRbs + qryIndex.ToString();
+            panelRbs.Name = pnlRbs + qryIndex.ToString();
             panelRbs.Location = new Point(txtBody.Location.X - 100, txtBody.Location.Y + sqlBoxIndexer + 10);
             int boxSize = 100;
             panelRbs.Height = boxSize;
             panelRbs.Width = boxSize;
             panelRbs.BringToFront();
-            var rb1 = Rb(RbType.Excel);
-            var rb2 = Rb(RbType.CSV);
-            var rb3 = Rb(RbType.Command);
+            var rb1 = createRb(RbType.Excel);
+            var rb2 = createRb(RbType.CSV);
+            var rb3 = createRb(RbType.Command);
             panelRbs.Controls.AddRange(new Control[] { rb1, rb2, rb3 });
             return panelRbs;
-        }       
-        private RadioButton Rb(RbType rbt)
+        }
+        private RadioButton createRb(RbType rbt)
         {
             RadioButton rb = new RadioButton();
             rb.Name = "rb" + rbt.ToString() + "_" + qryIndex;
             rb.Text = rbt.ToString();
-            rb.Margin = new Padding(0,0,0,0);            
+            rb.Margin = new Padding(0, 0, 0, 0);
             rb.Click += new EventHandler(rb_Click);
-            return rb;            
+            return rb;
         }
         #endregion
 
@@ -347,9 +364,9 @@ namespace EmailSqlResults
             this.Controls.Add(createDeleteButton());
             qryIndex++;
             sqlBoxIndexer += sqlBoxIncrementer;
-        }       
+        }
         private void PrepareToExecute()
-        {   
+        {
             //running checks
             if (Connection.ConnectionString != null) //check if server is set up
             {
@@ -395,7 +412,7 @@ namespace EmailSqlResults
                 ErrorHandler.Handle(ex);
                 MessageBox.Show(ex.Message);
             }
-        }       
+        }
         private void Execute(bool ToBeEmailed)
         {
             //runs the process to execute queries and send results
@@ -423,7 +440,7 @@ namespace EmailSqlResults
                             break;
                         case "CSV":
                             push.WriteToCsv("|");
-                            break;                        
+                            break;
                         case "Command":
                             break;
                         default:
@@ -445,7 +462,7 @@ namespace EmailSqlResults
                 if (ErrorHandler.AllIssues != "")
                 {
                     lblStatus.ForeColor = Color.Red;
-                    lblStatus.Text = "Sending Errors!"; 
+                    lblStatus.Text = "Sending Errors!";
                     Update();
                     var errMail = new EmailObject()  //create error email object;
                     {
@@ -458,10 +475,10 @@ namespace EmailSqlResults
                 }
             }
             lblStatus.Text = "Ready";
-            lblStatus.ForeColor = Color.Black; 
+            lblStatus.ForeColor = Color.Black;
             Update();
         }
-        private void FormDataWrite()
+        public void FormDataWrite()
         {
             using (StreamWriter sw = new StreamWriter(FormData, false))
             {
@@ -470,7 +487,7 @@ namespace EmailSqlResults
                     var controlType = c.GetType().ToString();
                     if (controlType == "System.Windows.Forms.TextBox")
                     {
-                        sw.WriteLine(iTag + c.Name + iTag_end + vTag + c.Text + vTag_end);                                                
+                        sw.WriteLine(iTag + c.Name + iTag_end + vTag + c.Text + vTag_end);
                     }
                 }
             }
@@ -481,9 +498,9 @@ namespace EmailSqlResults
             using (StreamReader sr = new StreamReader(FormData))
             {
                 string doc = sr.ReadToEnd();
-                var dict = new Dictionary<string, string>();
+
                 while (doc.Length > 0)
-	            {
+                {
                     if (doc.Search(iTag) > -1)
                     {
                         //getting values in the item tag
@@ -495,43 +512,48 @@ namespace EmailSqlResults
                         int value_startIndex = doc.Search(vTag) + vTag.Length;
                         int value_endIndex = doc.Search(vTag_end) - value_startIndex;
                         string value = doc.Substring(value_startIndex, value_endIndex);
-                        dict.Add(key, value);
+                        readFormList(key, value);
                         doc = doc.Substring(doc.Search(vTag_end) + vTag_end.Length);
+
                     }
                     else
                     {
                         break;
                     }
-	            }
+                }
                 //push values to form
-                readDictionary(dict);
+
             }
         }
-        private void readDictionary(Dictionary<string, string> dict)
+        private void readFormList(string key, string val)
         {
-            //reads a dictionary and pushes values to form
-            foreach (var key in dict.Keys)
+            //adds found values to form
+
+
+            //to-do: fix for handling query names
+            
+            //check to see if the control type in dictionary requires the making of a new query
+            if (key.Length > txtSql.Length)
             {
-                //check to see if the control type in dictionary requires the making of a new query
-                if (key.Length >  txtSql.Length)
+                string newKeyVal = key.Substring(0, txtSql.Length);
+                if (newKeyVal == txtSql)
                 {
-                    if (key.Substring(0, txtSql.Length) == txtSql)
-                    {
-                        AddQuery();
-                    }
+                    key = newKeyVal + qryIndex.ToString();
+                    AddQuery();
                 }
-                foreach (Control c in this.Controls)
+            }
+            foreach (Control c in this.Controls)
+            {
+                if (c.Name == key)
                 {
-                    if (c.Name == key)
-                    {
-                        c.Text = dict[key];
-                        break;
-                    }
+                    c.Text = val;
+                    break;
                 }
             }
         }
-        #endregion
     }
+        #endregion
+}
    
 
-}
+
