@@ -4,29 +4,9 @@
 <item>txtBody</item><value>body</value>
 <item>txtTo</item><value>matt.farguson@gmail.com</value>
 <item>txtSubject</item><value>sub</value>
-<item>txtQueryName_0</item><value>test1</value>
-<item>txtSql_0</item><value>/****** Script for SelectTopNRows command from SSMS  ******/
-SELECT TOP 10 [Date]
-      ,[Researcher]
-      ,[Team]
-      ,[EntityID]
-      ,[Change_Type]
-      ,[Table]
-      ,[Field]
-      ,[ID]
-      ,[From]
-      ,[To]
+<item>txtSql_0</item><value>SELECT TOP 100 *
   FROM [DailyOps].[dbo].[DailyLog]</value>
-<item>txtQueryName_1</item><value>test2</value>
-<item>txtSql_1</item><value>/****** Script for SelectTopNRows command from SSMS  ******/
-SELECT TOP 100 [Date]
-      ,[Researcher]
-      ,[Team]
-      ,[EntityID]
-      ,[Change_Type]
-      ,[Table]
-      ,[Field]
-      ,[ID]
-      ,[From]
-      ,[To]
+<item>txtQueryName_0</item><value>1</value>
+<item>txtSql_1</item><value>SELECT TOP 100 *
   FROM [DailyOps].[dbo].[DailyLog]</value>
+<item>txtQueryName_1</item><value>txtQueryName_1</value>

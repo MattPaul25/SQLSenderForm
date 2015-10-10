@@ -4,7 +4,6 @@ C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSq
 C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\bin\Debug\EmailSqlResults.exe
 C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\bin\Debug\EmailSqlResults.pdb
 C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.csprojResolveAssemblyReference.cache
-C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.DeleteSection.resources
 C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.Form1.resources
 C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.LogForm.resources
 C:\Users\fargusonm\documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\obj\Debug\EmailSqlResults.Properties.Resources.resources

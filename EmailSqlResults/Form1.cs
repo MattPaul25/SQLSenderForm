@@ -14,19 +14,20 @@ namespace EmailSqlResults
     public partial class Form1 : Form
     {
         #region Attributes
-        public string btnDel;
-        public string lblOutput;
-        public string txtQueryName;
-        public string txtSql;
-        public string iTag;
-        public string iTag_end;
-        public string vTag;
-        public string vTag_end;
-        public string pnlRbs;
-        static int sqlBoxIndexer;
-        static int qryIndex;
-        string FormData;
-        int sqlBoxIncrementer;
+        public string lblOutput { get; private set; }
+        public string txtQueryName { get; private set; }
+        public string txtSql { get; private set; }
+        private List<string[]> FormDataList;
+        private string btnDel;
+        private string iTag;
+        private string iTag_end;
+        private string vTag;
+        private string vTag_end;
+        private string pnlRbs;
+        private int sqlBoxIndexer;
+        private int qryIndex;
+        private string FormDataFile;
+        private int sqlBoxIncrementer;
         #endregion
 
         #region Constructor | Attribute Assignments | Enums
@@ -34,13 +35,12 @@ namespace EmailSqlResults
         {
             constructForm();
         }
-
         private void constructForm()
         {
             assignAttributes();
             InitializeComponent();
             Connection.ConnectionTested += ConnectionTestEventHandler;
-            if (File.Exists(FormData))
+            if (File.Exists(FormDataFile))
             {
                 FormDataRead();
             }
@@ -52,7 +52,8 @@ namespace EmailSqlResults
         }
         private void assignAttributes()
         {
-            FormData = "FormData.txt";
+            FormDataList = new List<string[]>();
+            FormDataFile = "FormData.txt";
             pnlRbs = "panelRbs_";
             btnDel = "btnDel_";
             lblOutput = "lblOutput_";
@@ -253,34 +254,18 @@ namespace EmailSqlResults
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //fix this method
             var myButton = (Button)sender;
-            string index = myButton.Name.Substring(myButton.Name.Search("_") + 1);
-            var delForm = new DeleteSection(this, index);
-            delForm.Show();
+            string index = myButton.Name.Substring(myButton.Name.Search("_"));
+            DeleteControls(index);
+            FormDataWrite("System.Windows.Forms.TextBox");
+            DeleteControls("_");
+            var height = txtBody.Location.Y + txtBody.Height + 60;
+            this.Height = height;
+            assignAttributes();
+            FormDataRead();
         }
 
-        public void DeleteControls(string getIndex)
-        {
-            var cntrls = this.Controls;
-            var cntrlCount = cntrls.Count;
-            for (int i = 0; i < cntrlCount; i++)
-            {
-                var cntrl = cntrls[i];
-                string name = cntrl.Name;
-                int start = name.Search("_");
-                if (start > -1)
-                {
-                    string cntrlIndex = name.Substring(start + 1);
-                    if (cntrlIndex == getIndex)
-                    {
-                        this.Controls.Remove(cntrl);
-                        i--;
-                        cntrlCount--;
-                    }
-                }
-            }
-        }
+    
         #endregion
 
         #region Dynamic Control Methods
@@ -335,9 +320,9 @@ namespace EmailSqlResults
             panelRbs.Height = boxSize;
             panelRbs.Width = boxSize;
             panelRbs.BringToFront();
-            var rb1 = createRb(RbType.Excel);
-            var rb2 = createRb(RbType.CSV);
-            var rb3 = createRb(RbType.Command);
+            RadioButton rb1 = createRb(RbType.Excel);
+            RadioButton rb2 = createRb(RbType.CSV);
+            RadioButton rb3 = createRb(RbType.Command);
             panelRbs.Controls.AddRange(new Control[] { rb1, rb2, rb3 });
             return panelRbs;
         }
@@ -357,8 +342,9 @@ namespace EmailSqlResults
         {
             lblStatus.ForeColor = Color.Black;
             this.Height += sqlBoxIncrementer;
-            this.Controls.Add(createNameBox());
+            //order matters here
             this.Controls.Add(createSQLBox());
+            this.Controls.Add(createNameBox());
             this.Controls.Add(createPanel());
             this.Controls.Add(OutputTypes());
             this.Controls.Add(createDeleteButton());
@@ -416,7 +402,7 @@ namespace EmailSqlResults
         private void Execute(bool ToBeEmailed)
         {
             //runs the process to execute queries and send results
-            FormDataWrite();
+            FormDataWrite("System.Windows.Forms.TextBox");
             lblStatus.Text = "Executing....."; lblStatus.ForeColor = Color.DarkBlue; Update();
             ErrorHandler.AllIssues = "";
             var findSql = new FindSQL(this);
@@ -456,7 +442,6 @@ namespace EmailSqlResults
             }
             if (ToBeEmailed) //if the email is needs to be emailed run the rest of the code
             {
-
                 var EmlObj = new EmailObject() { To = txtTo.Text, Body = txtBody.Text, CC = txtCC.Text, Subject = txtSubject.Text };
                 var GenerateEmail = new GenerateEmail(EmlObj, qryNames, txtFilePath.Text);
                 if (ErrorHandler.AllIssues != "")
@@ -478,27 +463,57 @@ namespace EmailSqlResults
             lblStatus.ForeColor = Color.Black;
             Update();
         }
-        public void FormDataWrite()
+        public void DeleteControls(string marker)
         {
-            using (StreamWriter sw = new StreamWriter(FormData, false))
+            var cntrls = this.Controls;
+            var cntrlCount = cntrls.Count;
+            for (int i = 0; i < cntrlCount; i++)
+            {
+                var cntrl = cntrls[i];
+                string name = cntrl.Name;
+                int start = name.Search(marker);
+                if (start > -1)
+                {
+                    string cntrlIndex = name.Substring(start, marker.Length);
+                    if (cntrlIndex == marker)
+                    {
+                        this.Controls.Remove(cntrl);
+                        i--;
+                        cntrlCount--;
+                    }
+                }
+            }
+        }
+        public void FormDataWrite(string ControlType)
+        {
+            using (StreamWriter sw = new StreamWriter(FormDataFile, false))
             {
                 foreach (Control c in this.Controls)
                 {
                     var controlType = c.GetType().ToString();
-                    if (controlType == "System.Windows.Forms.TextBox")
+                    if (controlType == ControlType)
                     {
                         sw.WriteLine(iTag + c.Name + iTag_end + vTag + c.Text + vTag_end);
+                        FormDataList.Add(new string[] {c.Name, c.Text});
                     }
                 }
+            }
+        }   
+     
+        private void FormDatReadList()
+        {
+            for (int i = 0; i < FormDataList.Count; i++)
+            {
+                var FormData = FormDataList[i];
+                ApplyValues(FormData[0], FormData[1]);
             }
         }
         private void FormDataRead()
         {
             //reads stire data and pushes it to form
-            using (StreamReader sr = new StreamReader(FormData))
+            using (StreamReader sr = new StreamReader(FormDataFile))
             {
                 string doc = sr.ReadToEnd();
-
                 while (doc.Length > 0)
                 {
                     if (doc.Search(iTag) > -1)
@@ -512,20 +527,17 @@ namespace EmailSqlResults
                         int value_startIndex = doc.Search(vTag) + vTag.Length;
                         int value_endIndex = doc.Search(vTag_end) - value_startIndex;
                         string value = doc.Substring(value_startIndex, value_endIndex);
-                        readFormList(key, value);
+                        ApplyValues(key, value);
                         doc = doc.Substring(doc.Search(vTag_end) + vTag_end.Length);
-
                     }
                     else
                     {
                         break;
                     }
                 }
-                //push values to form
-
             }
         }
-        private void readFormList(string key, string val)
+        private void ApplyValues(string key, string val)
         {
             //adds found values to form
 
@@ -542,6 +554,9 @@ namespace EmailSqlResults
                     AddQuery();
                 }
             }
+            //if(key == "txtQueryName_0")
+            //    MessageBox.Show("stop");
+
             foreach (Control c in this.Controls)
             {
                 if (c.Name == key)

@@ -41,7 +41,7 @@ namespace EmailSqlResults
             Outlook._Application _app = new Outlook.Application();  
             Outlook._NameSpace _ns = _app.GetNamespace("MAPI");
             //System.Threading.Thread.Sleep(5000); //wait for app to start
-            Outlook.MailItem mail = (Outlook.MailItem)_app.CreateItem(Outlook.OlItemType.olMailItem);
+            Outlook.MailItem _mail = (Outlook.MailItem)_app.CreateItem(Outlook.OlItemType.olMailItem);
             try
             {                
                 int fileCount = 0;
@@ -49,21 +49,22 @@ namespace EmailSqlResults
                 {
                     foreach (var qryName in qryNames)
                     {
-                        mail.Attachments.Add(AttachmentLocation + qryName);
+                        _mail.Attachments.Add(AttachmentLocation + qryName);
                         fileCount++;
                     }
                 }
                 if (errEmail || fileCount > 0)
                 {
-                    mail.Subject = myDate + " " + eml.Subject;
-                    mail.To = eml.To;
-                    mail.CC = eml.CC;
-                    mail.Body = eml.Body;
-                    mail.Importance = Outlook.OlImportance.olImportanceNormal;                    
+                    _mail.Subject = myDate + " " + eml.Subject;
+                    _mail.To = eml.To;
+                    _mail.CC = eml.CC;
+                    _mail.Body = eml.Body;
+                    _mail.Importance = Outlook.OlImportance.olImportanceNormal;                    
                     //System.Threading.Thread.Sleep(5000); //wait for application to catch up with mail object
-                    ((Outlook.MailItem)mail).Send();
+                    ((Outlook.MailItem)_mail).Send();
                     _ns.SendAndReceive(true); //send and receive
-                    mail.Close(Outlook.OlInspectorClose.olDiscard);
+                    _mail.Close(Outlook.OlInspectorClose.olDiscard);
+                    System.Threading.Thread.Sleep(5000); //wait for application to catch up with mail object
                     _app.Quit();
                     isSuccessful = true;
                 }

@@ -74,12 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionHandler.cs" />
-    <Compile Include="DeleteSection.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DeleteSection.Designer.cs">
-      <DependentUpon>DeleteSection.cs</DependentUpon>
-    </Compile>
     <Compile Include="ErrorHandler.cs" />
     <Compile Include="OutputQuery.cs" />
     <Compile Include="GenerateEmail.cs" />
@@ -112,9 +106,6 @@
       <DependentUpon>SqlViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
-    <EmbeddedResource Include="DeleteSection.resx">
-      <DependentUpon>DeleteSection.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
