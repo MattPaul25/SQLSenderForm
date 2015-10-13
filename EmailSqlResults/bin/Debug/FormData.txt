@@ -1,12 +1,8 @@
 <item>txtYourEmail</item><value>matt.farguson@gmail.com</value>
-<item>txtFilePath</item><value>C:\Users\fargusonm\Documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults/</value>
+<item>txtFilePath</item><value>C:\Users\fargusonm\Documents\visual studio 2013\Projects\EmailSqlResults\EmailSqlResults\bin\Debug/</value>
 <item>txtCC</item><value>matt.farguson@gmail.com</value>
-<item>txtBody</item><value>body</value>
+<item>txtBody</item><value>bod</value>
 <item>txtTo</item><value>matt.farguson@gmail.com</value>
 <item>txtSubject</item><value>sub</value>
-<item>txtSql_0</item><value>SELECT TOP 100 *
-  FROM [DailyOps].[dbo].[DailyLog]</value>
-<item>txtQueryName_0</item><value>1</value>
-<item>txtSql_1</item><value>SELECT TOP 100 *
-  FROM [DailyOps].[dbo].[DailyLog]</value>
-<item>txtQueryName_1</item><value>txtQueryName_1</value>
+<item>txtSql_0</item><value>34</value>
+<item>txtQueryName_0</item><value>txtQueryName_0</value>

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
+
 namespace EmailSqlResults
 {
     public partial class Form1 : Form
@@ -28,6 +29,7 @@ namespace EmailSqlResults
         private int qryIndex;
         private string FormDataFile;
         private int sqlBoxIncrementer;
+        private string FormType;
         #endregion
 
         #region Constructor | Attribute Assignments | Enums
@@ -39,6 +41,7 @@ namespace EmailSqlResults
         {
             assignAttributes();
             InitializeComponent();
+            FormDataList = new List<string[]>();
             Connection.ConnectionTested += ConnectionTestEventHandler;
             if (File.Exists(FormDataFile))
             {
@@ -52,7 +55,7 @@ namespace EmailSqlResults
         }
         private void assignAttributes()
         {
-            FormDataList = new List<string[]>();
+            
             FormDataFile = "FormData.txt";
             pnlRbs = "panelRbs_";
             btnDel = "btnDel_";
@@ -66,6 +69,7 @@ namespace EmailSqlResults
             qryIndex = 0;
             sqlBoxIncrementer = 150;
             sqlBoxIndexer = sqlBoxIncrementer;
+            FormType = "System.Windows.Forms.TextBox";
         }
         #endregion
 
@@ -252,20 +256,22 @@ namespace EmailSqlResults
             MessageBox.Show("Options: \n Excel will output as an excel file \n CSV will output as a pipe delimited csv or text file "
                             + "\n Command will not output any data but will run against the DB", "Output Types");
         }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            FormDataWrite();
+        }
         private void btnDelete_Click(object sender, EventArgs e)
         {
             var myButton = (Button)sender;
             string index = myButton.Name.Substring(myButton.Name.Search("_"));
             DeleteControls(index);
-            FormDataWrite("System.Windows.Forms.TextBox");
+            FormDataWriteList(FormType);
             DeleteControls("_");
             var height = txtBody.Location.Y + txtBody.Height + 60;
             this.Height = height;
             assignAttributes();
-            FormDataRead();
+            FormDataReadList();
         }
-
-    
         #endregion
 
         #region Dynamic Control Methods
@@ -340,6 +346,7 @@ namespace EmailSqlResults
         #region Methods
         private void AddQuery()
         {
+            
             lblStatus.ForeColor = Color.Black;
             this.Height += sqlBoxIncrementer;
             //order matters here
@@ -402,7 +409,7 @@ namespace EmailSqlResults
         private void Execute(bool ToBeEmailed)
         {
             //runs the process to execute queries and send results
-            FormDataWrite("System.Windows.Forms.TextBox");
+            FormDataWrite();
             lblStatus.Text = "Executing....."; lblStatus.ForeColor = Color.DarkBlue; Update();
             ErrorHandler.AllIssues = "";
             var findSql = new FindSQL(this);
@@ -484,28 +491,36 @@ namespace EmailSqlResults
                 }
             }
         }
-        public void FormDataWrite(string ControlType)
+        public void FormDataWriteList(string ControlType)
         {
-            using (StreamWriter sw = new StreamWriter(FormDataFile, false))
+            Predicate<string[]> myPred = (string[] myString) => { return myString[0] != "";};
+            FormDataList.RemoveAll(myPred);
+            foreach (Control c in this.Controls)
             {
-                foreach (Control c in this.Controls)
+                var controlType = c.GetType().ToString();
+                if (controlType == ControlType)
                 {
-                    var controlType = c.GetType().ToString();
-                    if (controlType == ControlType)
-                    {
-                        sw.WriteLine(iTag + c.Name + iTag_end + vTag + c.Text + vTag_end);
-                        FormDataList.Add(new string[] {c.Name, c.Text});
-                    }
+                    FormDataList.Add(new string[] { c.Name, c.Text });
                 }
             }
         }   
-     
-        private void FormDatReadList()
+        private void FormDataReadList()
         {
             for (int i = 0; i < FormDataList.Count; i++)
             {
                 var FormData = FormDataList[i];
                 ApplyValues(FormData[0], FormData[1]);
+            }
+        }
+        public void FormDataWrite()
+        {
+            FormDataWriteList(FormType);
+            using (StreamWriter sw = new StreamWriter(FormDataFile, false))
+            {
+                foreach (var item in FormDataList)
+                {
+                    sw.WriteLine(iTag + item[0] + iTag_end + vTag + item[1] + vTag_end);
+                }
             }
         }
         private void FormDataRead()
@@ -538,13 +553,7 @@ namespace EmailSqlResults
             }
         }
         private void ApplyValues(string key, string val)
-        {
-            //adds found values to form
-
-
-            //to-do: fix for handling query names
-            
-            //check to see if the control type in dictionary requires the making of a new query
+        {         
             if (key.Length > txtSql.Length)
             {
                 string newKeyVal = key.Substring(0, txtSql.Length);
@@ -554,9 +563,6 @@ namespace EmailSqlResults
                     AddQuery();
                 }
             }
-            //if(key == "txtQueryName_0")
-            //    MessageBox.Show("stop");
-
             foreach (Control c in this.Controls)
             {
                 if (c.Name == key)
@@ -566,8 +572,11 @@ namespace EmailSqlResults
                 }
             }
         }
-    }
         #endregion
+
+       
+    }
+   
 }
    
 
