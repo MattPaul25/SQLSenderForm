@@ -40,7 +40,7 @@ namespace EmailSqlResults
             string myDate = DateTime.Today.ToString("MMMM dd, yyyy");
             Outlook._Application _app = new Outlook.Application();  
             Outlook._NameSpace _ns = _app.GetNamespace("MAPI");
-            //System.Threading.Thread.Sleep(5000); //wait for app to start
+            System.Threading.Thread.Sleep(5000); //wait for app to start
             Outlook.MailItem _mail = (Outlook.MailItem)_app.CreateItem(Outlook.OlItemType.olMailItem);
             try
             {                
@@ -49,25 +49,25 @@ namespace EmailSqlResults
                 {
                     foreach (var qryName in qryNames)
                     {
-                        _mail.Attachments.Add(AttachmentLocation + qryName);
-                        fileCount++;
+                        if (System.IO.File.Exists(AttachmentLocation + qryName))
+                        {
+                            _mail.Attachments.Add(AttachmentLocation + qryName);
+                            fileCount++;
+                        }
                     }
-                }
-                if (errEmail || fileCount > 0)
-                {
-                    _mail.Subject = myDate + " " + eml.Subject;
-                    _mail.To = eml.To;
-                    _mail.CC = eml.CC;
-                    _mail.Body = eml.Body;
-                    _mail.Importance = Outlook.OlImportance.olImportanceNormal;                    
-                    //System.Threading.Thread.Sleep(5000); //wait for application to catch up with mail object
-                    ((Outlook.MailItem)_mail).Send();
-                    _ns.SendAndReceive(true); //send and receive
-                    _mail.Close(Outlook.OlInspectorClose.olDiscard);
-                    System.Threading.Thread.Sleep(5000); //wait for application to catch up with mail object
-                    _app.Quit();
-                    isSuccessful = true;
-                }
+                }               
+                _mail.Subject = myDate + " " + eml.Subject;
+                _mail.To = eml.To;
+                _mail.CC = eml.CC;
+                _mail.Body = eml.Body;
+                _mail.Importance = Outlook.OlImportance.olImportanceNormal;                    
+                System.Threading.Thread.Sleep(5000); //wait for application to catch up with mail object
+                ((Outlook.MailItem)_mail).Send();
+                _ns.SendAndReceive(true); //send and receive
+                _mail.Close(Outlook.OlInspectorClose.olDiscard);
+                System.Threading.Thread.Sleep(5000); //wait for application to catch up with mail object
+                _app.Quit();
+                isSuccessful = true;                
             }
             catch (COMException cEx)
             {

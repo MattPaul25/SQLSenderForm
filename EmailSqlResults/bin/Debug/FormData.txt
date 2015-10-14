@@ -4,5 +4,29 @@
 <item>txtBody</item><value>bod</value>
 <item>txtTo</item><value>matt.farguson@gmail.com</value>
 <item>txtSubject</item><value>sub</value>
-<item>txtSql_0</item><value>34</value>
+<item>txtSql_0</item><value>SELECT TOP 10 [Date]
+      ,[Researcher]
+      ,[Team]
+      ,[EntityID]
+      ,[Change_Type]
+      ,[Table]
+      ,[Field]
+      ,[ID]
+      ,[From]
+      ,[To]
+  FROM [DailyOps].[dbo].[DailyLog]
+  order by [Date] desc</value>
 <item>txtQueryName_0</item><value>txtQueryName_0</value>
+<item>txtSql_1</item><value>SELECT TOP 100 [Date]
+      ,[Researcher]
+      ,[Team]
+      ,[EntityID]
+      ,[Change_Type]
+      ,[Table]
+      ,[Field]
+      ,[ID]
+      ,[From]
+      ,[To]
+  FROM [DailyOps].[dbo].[DailyLog]
+  order by [Date] desc</value>
+<item>txtQueryName_1</item><value>txtQueryName_1</value>

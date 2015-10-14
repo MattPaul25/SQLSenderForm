@@ -346,7 +346,6 @@ namespace EmailSqlResults
         #region Methods
         private void AddQuery()
         {
-            
             lblStatus.ForeColor = Color.Black;
             this.Height += sqlBoxIncrementer;
             //order matters here
@@ -430,14 +429,17 @@ namespace EmailSqlResults
                     {
                         case "Excel":
                             push.WriteToExcel();
+                            AppendToList(".xlsx");
                             break;
                         case "CSV":
                             push.WriteToCsv("|");
+                            AppendToList(".csv");
                             break;
                         case "Command":
                             break;
                         default:
                             push.WriteToExcel();
+                            AppendToList(".xlsx");
                             break;
                     }
                 }
@@ -453,8 +455,7 @@ namespace EmailSqlResults
                 var GenerateEmail = new GenerateEmail(EmlObj, qryNames, txtFilePath.Text);
                 if (ErrorHandler.AllIssues != "")
                 {
-                    lblStatus.ForeColor = Color.Red;
-                    lblStatus.Text = "Sending Errors!";
+                    lblStatus.ForeColor = Color.Red; lblStatus.Text = "Sending Errors!";
                     Update();
                     var errMail = new EmailObject()  //create error email object;
                     {
@@ -469,6 +470,11 @@ namespace EmailSqlResults
             lblStatus.Text = "Ready";
             lblStatus.ForeColor = Color.Black;
             Update();
+        }
+
+        private void AppendToList(string p)
+        {
+           
         }
         public void DeleteControls(string marker)
         {
